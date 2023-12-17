@@ -5,7 +5,6 @@
 
     using LaptopForge.Data.Common.Models;
     using LaptopForge.Data.Common.Repositories;
-
     using Microsoft.EntityFrameworkCore;
 
     public class EfDeletableEntityRepository<TEntity> : EfRepository<TEntity>, IDeletableEntityRepository<TEntity>

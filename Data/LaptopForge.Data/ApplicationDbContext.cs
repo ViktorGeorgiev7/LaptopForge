@@ -8,7 +8,7 @@
 
     using LaptopForge.Data.Common.Models;
     using LaptopForge.Data.Models;
-
+    using LaptopForge.Data.Models.Models;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
 
@@ -25,6 +25,10 @@
         }
 
         public DbSet<Setting> Settings { get; set; }
+
+        public DbSet<Laptop> Laptops { get; set; }
+
+        public DbSet<ApplicationUserLaptop> ApplicationUserLaptop { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 

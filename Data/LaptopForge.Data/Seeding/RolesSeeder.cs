@@ -6,7 +6,6 @@
 
     using LaptopForge.Common;
     using LaptopForge.Data.Models;
-
     using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.DependencyInjection;
 

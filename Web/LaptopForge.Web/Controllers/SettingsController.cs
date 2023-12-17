@@ -7,7 +7,6 @@
     using LaptopForge.Data.Models;
     using LaptopForge.Services.Data;
     using LaptopForge.Web.ViewModels.Settings;
-
     using Microsoft.AspNetCore.Mvc;
 
     public class SettingsController : BaseController

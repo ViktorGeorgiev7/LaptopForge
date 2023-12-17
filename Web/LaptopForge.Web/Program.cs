@@ -12,7 +12,6 @@
     using LaptopForge.Services.Mapping;
     using LaptopForge.Services.Messaging;
     using LaptopForge.Web.ViewModels;
-
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;

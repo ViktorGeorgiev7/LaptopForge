@@ -2,7 +2,6 @@
 {
     using LaptopForge.Common;
     using LaptopForge.Web.Controllers;
-
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 

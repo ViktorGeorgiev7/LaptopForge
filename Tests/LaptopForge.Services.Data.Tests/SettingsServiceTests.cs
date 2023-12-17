@@ -8,11 +8,8 @@
     using LaptopForge.Data.Common.Repositories;
     using LaptopForge.Data.Models;
     using LaptopForge.Data.Repositories;
-
     using Microsoft.EntityFrameworkCore;
-
     using Moq;
-
     using Xunit;
 
     public class SettingsServiceTests
