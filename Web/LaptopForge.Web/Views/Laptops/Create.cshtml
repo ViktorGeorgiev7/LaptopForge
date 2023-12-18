@@ -1,0 +1,10 @@
+﻿@model LaptopForge.Web.ViewModels.ViewModels.CreateLaptopInputModel
+@{
+	ViewData["Title"] = "Create";
+}
+<h1>Create Laptop</h1>
+<form method="post">
+	<label asp-for="Manufacturer"></label>
+	<input asp-for="Manufacturer" class="form-control"/>
+	<span asp-validation-for="Manufacturer"></span>
+</form>

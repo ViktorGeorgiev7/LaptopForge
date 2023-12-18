@@ -2,6 +2,8 @@
 {
     public class IndexViewModel
     {
-        public int SettingsCount { get; set; }
+        public int UserCount { get; set; }
+
+        public int LaptopCount { get; set; }
     }
 }
