@@ -2,7 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
+	using System.ComponentModel;
+	using System.ComponentModel.DataAnnotations;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
@@ -15,6 +16,12 @@
 
     public enum Category
     {
+        Notebook,
+        Ultrabook,
+        [Display(Name="2 in 1 Convertible")]
+        Convertible,
+        Gaming,
+        Netbook,
     }
 
     public class CreateLaptopInputModel
@@ -28,8 +35,7 @@
         public string ModelName { get; set; }
 
         [Required]
-        [StringLength(50, MinimumLength = 3)]
-        public string Category { get; set; }
+        public Category Category { get; set; }
 
         [Required]
         [StringLength(50, MinimumLength = 2)]
