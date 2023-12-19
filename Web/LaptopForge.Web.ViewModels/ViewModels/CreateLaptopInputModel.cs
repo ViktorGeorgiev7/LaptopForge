@@ -20,33 +20,51 @@
     public class CreateLaptopInputModel
     {
         [StringLength(20, MinimumLength = 3)]
+        [Required]
         public string Manufacturer { get; set; }
 
+        [Required]
         [StringLength(50, MinimumLength = 3)]
         public string ModelName { get; set; }
 
+        [Required]
+        [StringLength(50, MinimumLength = 3)]
         public string Category { get; set; }
 
+        [Required]
+        [StringLength(50, MinimumLength = 2)]
         public string CPU { get; set; }
 
+        [Required]
+        [StringLength(50, MinimumLength = 3)]
         public string GPU { get; set; }
 
+        [Required]
         public string ImageUrl { get; set; }
 
+        [Required]
+        [StringLength(50, MinimumLength = 3)]
         public string OperatingSystem { get; set; }
 
         public double? OperatingSystemVersion { get; set; }
 
+        [Required]
         public double Price { get; set; }
 
+        [Required]
         public string Ram { get; set; }
 
+        [Required]
         public string Screen { get; set; }
 
+        [Required]
+        [Range(9,20)]
         public double ScreenSize { get; set; }
 
+        [Required]
         public string Storage { get; set; }
 
+        [Required]
         public string Weight { get; set; }
 
     }

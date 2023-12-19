@@ -31,13 +31,14 @@
 
         public IActionResult Privacy()
         {
-            string jsonPath = @"C:\Users\35988\Desktop\LaptopForge\Web\LaptopForge.Web\wwwroot\Laptops.json";
-            StreamReader reader = new StreamReader(jsonPath);
-            string json = reader.ReadToEnd();
-            var laptops = JsonConvert.DeserializeObject<HashSet<Laptop>>(json);
-            var dbLaptops = this.db.Laptops;
-            dbLaptops.AddRange(laptops);
-            this.db.SaveChanges();
+            // fix path for urself
+            // string jsonPath = @"C:\Users\35988\Desktop\LaptopForge\Web\LaptopForge.Web\wwwroot\Laptops.json";
+            // StreamReader reader = new StreamReader(jsonPath);
+            // string json = reader.ReadToEnd();
+            // var laptops = JsonConvert.DeserializeObject<HashSet<Laptop>>(json);
+            // var dbLaptops = this.db.Laptops;
+            // dbLaptops.AddRange(laptops);
+            // this.db.SaveChanges();
             return this.View();
         }
 

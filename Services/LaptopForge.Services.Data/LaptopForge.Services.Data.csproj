@@ -24,4 +24,8 @@
     <ProjectReference Include="..\LaptopForge.Services.Mapping\LaptopForge.Services.Mapping.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="IServices\" />
+  </ItemGroup>
+
 </Project>
