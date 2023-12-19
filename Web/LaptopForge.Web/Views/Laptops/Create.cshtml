@@ -5,7 +5,7 @@
 }
 <style>
 	.form-style-9 {
-		max-width: 1000px;
+		max-width: 850px;
 		background: #FAFAFA;
 		padding: 30px;
 		margin: 50px auto;
@@ -13,51 +13,84 @@
 		border-radius: 10px;
 		border: 6px solid #305A72;
 	}
-</style>
-<h1>Create Laptop</h1>
-<form method="post" class="form-style-9">
-	<div class="mb-3 col-xl-7"> 
-		<label asp-for="Manufacturer" class="form-label"></label>
-		<input asp-for="Manufacturer" class="form-control" />
-		<span asp-validation-for="Manufacturer" class="text-danger"></span>
-	</div>
-	<div class="mb-3 col-xl-7">
-		<label asp-for="Category" class="form-label"></label>
-		<select asp-for="Category" class="form-control" 
-		asp-items="@Html.GetEnumSelectList<Category>()">
+	.centerDiv{
+		display:grid;
+		place-items:center;
+	}
 
-		</select>
-		<span asp-validation-for="Category" class="text-danger"></span>
-	</div>
-	<div class="mb-3 col-xl-7">
-		<label asp-for="Screen" class="form-label"></label>
-		<input asp-for="Screen" class="form-control" />
-		<span asp-validation-for="Screen" class="text-danger"></span>
-	</div>
-	<div class="mb-3 col-xl-7">
-		<label asp-for="ScreenSize" class="form-label"></label>
-		<input asp-for="ScreenSize" class="form-control" />
-		<span asp-validation-for="ScreenSize" class="text-danger"></span>
-	</div>
-	<div class="mb-3 col-xl-7">
-		<label asp-for="CPU" class="form-label"></label>
-		<input asp-for="CPU" class="form-control" />
-		<span asp-validation-for="CPU" class="text-danger"></span>
-	</div>
-	<div class="mb-3 col-xl-7">
-		<label asp-for="GPU" class="form-label"></label>
-		<input asp-for="GPU" class="form-control" />
-		<span asp-validation-for="GPU" class="text-danger"></span>
-	</div>
-	<div class="mb-3 col-xl-7">
-		<label asp-for="Ram" class="form-label"></label>
-		<input asp-for="Ram" class="form-control" />
-		<span asp-validation-for="Ram" class="text-danger"></span>
-	</div>
-	<div class="mb-3 col-xl-7">
-		<label asp-for="Storage" class="form-label"></label>
-		<input asp-for="Storage" class="form-control" />
-		<span asp-validation-for="Storage" class="text-danger"></span>
-	</div>
+	}
+</style>
+<h1 class="centerDiv">Create Laptop</h1>
+<form method="post" class="form-style-9 child">
+	<div class="centerDiv">
+
+		<div class="mb-3 col-xl-7"> 
+			<label asp-for="Manufacturer" class="form-label"></label>
+			<input asp-for="Manufacturer" class="form-control" />
+			<span asp-validation-for="Manufacturer" class="text-danger"></span>
+		</div>
+		<div class="mb-3 col-xl-7">
+			<label asp-for="ModelName" class="form-label"></label>
+			<input asp-for="ModelName" class="form-control" />
+			<span asp-validation-for="ModelName" class="text-danger"></span>
+		</div>
+		<div class="mb-3 col-xl-7">
+			<label asp-for="Category" class="form-label"></label>
+			<select asp-for="Category" class="form-control" 
+			asp-items="@Html.GetEnumSelectList<Category>()">
+			</select>
+			<span asp-validation-for="Category" class="text-danger"></span>
+		</div>
+		<div class="mb-3 col-xl-7">
+			<label asp-for="CPU" class="form-label"></label>
+			<input asp-for="CPU" class="form-control" />
+			<span asp-validation-for="CPU" class="text-danger"></span>
+		</div>
+		<div class="mb-3 col-xl-7">
+			<label asp-for="GPU" class="form-label"></label>
+			<input asp-for="GPU" class="form-control" />
+			<span asp-validation-for="GPU" class="text-danger"></span>
+		</div>
+		<div class="mb-3 col-xl-7">
+			<label asp-for="OperatingSystem" class="form-label"></label>
+			<input asp-for="OperatingSystem" class="form-control" />
+			<span asp-validation-for="OperatingSystem" class="text-danger"></span>
+		</div>
+		<div class="mb-3 col-xl-7">
+			<label asp-for="OperatingSystemVersion" class="form-label"></label>
+			<input asp-for="OperatingSystemVersion" class="form-control" />
+			<span asp-validation-for="OperatingSystemVersion" class="text-danger"></span>
+		</div>
+		<div class="mb-3 col-xl-7">
+			<label asp-for="Price" class="form-label"></label>
+			<input asp-for="Price" class="form-control" />
+			<span asp-validation-for="Price" class="text-danger"></span>
+		</div>
+		<div class="mb-3 col-xl-7">
+			<label asp-for="Weight" class="form-label"></label>
+			<input asp-for="Weight" class="form-control" />
+			<span asp-validation-for="Weight" class="text-danger"></span>
+		</div>
+		<div class="mb-3 col-xl-7">
+			<label asp-for="Screen" class="form-label"></label>
+			<input asp-for="Screen" class="form-control" />
+			<span asp-validation-for="Screen" class="text-danger"></span>
+		</div>
+		<div class="mb-3 col-xl-7">
+			<label asp-for="ScreenSize" class="form-label"></label>
+			<input asp-for="ScreenSize" class="form-control" />
+			<span asp-validation-for="ScreenSize" class="text-danger"></span>
+		</div>
+		<div class="mb-3 col-xl-7">
+			<label asp-for="Ram" class="form-label"></label>
+			<input asp-for="Ram" class="form-control" />
+			<span asp-validation-for="Ram" class="text-danger"></span>
+		</div>
+		<div class="mb-3 col-xl-7">
+			<label asp-for="Storage" class="form-label"></label>
+			<input asp-for="Storage" class="form-control" />
+			<span asp-validation-for="Storage" class="text-danger"></span>
+		</div>
 	<button type="submit" class="btn btn-primary">Submit</button>
+	</div>
 </form>
