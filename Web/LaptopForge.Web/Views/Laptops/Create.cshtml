@@ -23,10 +23,11 @@
 <h1 class="centerDiv">Create Laptop</h1>
 <form method="post" class="form-style-9 child">
 	<div class="centerDiv">
-
 		<div class="mb-3 col-xl-7"> 
 			<label asp-for="Manufacturer" class="form-label"></label>
-			<input asp-for="Manufacturer" class="form-control" />
+			<select asp-for="Manufacturer" class="form-control"
+					asp-items="@Html.GetEnumSelectList<Manufacturer>()">
+			</select>
 			<span asp-validation-for="Manufacturer" class="text-danger"></span>
 		</div>
 		<div class="mb-3 col-xl-7">

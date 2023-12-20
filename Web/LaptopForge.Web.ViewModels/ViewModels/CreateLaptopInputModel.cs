@@ -16,22 +16,38 @@
 
     public enum Category
     {
+        Unknown,
         Notebook,
         Ultrabook,
-        [Display(Name="2 in 1 Convertible")]
+        [Display(Name = "2 in 1 Convertible")]
         Convertible,
         Gaming,
         Netbook,
     }
 
+    public enum Manufacturer
+    {
+        Unknown,
+        Acer,
+        Apple,
+        Asus,
+        Dell,
+        HP,
+        Lenovo,
+        MSI,
+        Microsoft,
+    }
+
+
     public class CreateLaptopInputModel
     {
-        [StringLength(20, MinimumLength = 3)]
+        [StringLength(20, MinimumLength = 2)]
         [Required]
-        public string Manufacturer { get; set; }
+        public Manufacturer Manufacturer { get; set; }
 
         [Required]
         [StringLength(50, MinimumLength = 3)]
+        [DisplayName("Model name")]
         public string ModelName { get; set; }
 
         [Required]
@@ -50,9 +66,11 @@
 
         [Required]
         [StringLength(50, MinimumLength = 3)]
-        public string OperatingSystem { get; set; }
+		[DisplayName("Operating System")]
+		public string OperatingSystem { get; set; }
 
-        public double? OperatingSystemVersion { get; set; }
+		[DisplayName("Operating System Version")]
+		public double? OperatingSystemVersion { get; set; }
 
         [Required]
         public double Price { get; set; }
@@ -64,8 +82,10 @@
         public string Screen { get; set; }
 
         [Required]
-        [Range(9,20)]
-        public double ScreenSize { get; set; }
+        [Range(9, 20)]
+		[DisplayName("Screen Size")]
+
+		public double ScreenSize { get; set; }
 
         [Required]
         public string Storage { get; set; }
