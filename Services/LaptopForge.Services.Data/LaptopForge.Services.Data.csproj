@@ -21,11 +21,9 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\LaptopForge.Data.Common\LaptopForge.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\LaptopForge.Data.Models\LaptopForge.Data.Models.csproj" />
+    <ProjectReference Include="..\..\Data\LaptopForge.Data\LaptopForge.Data.csproj" />
+    <ProjectReference Include="..\..\Web\LaptopForge.Web.ViewModels\LaptopForge.Web.ViewModels.csproj" />
     <ProjectReference Include="..\LaptopForge.Services.Mapping\LaptopForge.Services.Mapping.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="IServices\" />
   </ItemGroup>
 
 </Project>

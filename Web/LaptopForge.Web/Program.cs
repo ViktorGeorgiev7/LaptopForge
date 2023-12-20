@@ -9,7 +9,8 @@
     using LaptopForge.Data.Repositories;
     using LaptopForge.Data.Seeding;
     using LaptopForge.Services.Data;
-    using LaptopForge.Services.Mapping;
+	using LaptopForge.Services.Data.IServices;
+	using LaptopForge.Services.Mapping;
     using LaptopForge.Services.Messaging;
     using LaptopForge.Web.ViewModels;
     using Microsoft.AspNetCore.Builder;
@@ -19,6 +20,8 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+
+    using AutoMapper;
 
     public class Program
     {
@@ -64,6 +67,7 @@
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ISettingsService, SettingsService>();
+            services.AddTransient<ICreateLaptop, CreateLaptop>();
         }
 
         private static void Configure(WebApplication app)

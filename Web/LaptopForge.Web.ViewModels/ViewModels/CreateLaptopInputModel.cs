@@ -41,7 +41,6 @@
 
     public class CreateLaptopInputModel
     {
-        [StringLength(20, MinimumLength = 2)]
         [Required]
         public Manufacturer Manufacturer { get; set; }
 
