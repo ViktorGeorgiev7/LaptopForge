@@ -61,8 +61,10 @@ html {
 }
 
 body {
-    /* Margin bottom by footer height */
-    margin-bottom: 60px;
+    background-image: url('https://images.pexels.com/photos/1939485/pexels-photo-1939485.jpeg');
+    background-size: cover; /* Adjust as needed */
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Optional: to fix the background while scrolling */
 }
 
 .footer {
