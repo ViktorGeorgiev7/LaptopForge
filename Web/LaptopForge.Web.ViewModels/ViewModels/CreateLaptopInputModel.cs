@@ -83,8 +83,7 @@
         [Required]
         [Range(9, 20)]
 		[DisplayName("Screen Size")]
-
-		public double ScreenSize { get; set; }
+        public double ScreenSize { get; set; }
 
         [Required]
         public string Storage { get; set; }
