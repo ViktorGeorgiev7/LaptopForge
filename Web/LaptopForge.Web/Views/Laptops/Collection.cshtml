@@ -1,0 +1,71 @@
+﻿@{
+	ViewData["Title"] = "Laptop Collection";
+}
+<style>
+    ul.contacts {
+        display: block;
+        position: relative;
+        list-style-type: none;
+        float: right;
+        margin: 0;
+        padding: 0;
+    }
+
+    a, a:link, a:visited {
+        color: #2A568B;
+        text-decoration: none;
+    }
+
+    main, section, header, #filters, .sidebar {
+        position: relative;
+        z-index: 1;
+    }
+
+    .sidebar {
+        float: left;
+        width: 14.6667em;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    #filters .filter-group {
+        max-height: none;
+        padding: 0 0 0.6666666667em;
+    }
+</style>
+        <header>
+            <nav class="breadcrumb">
+                <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <a itemprop="url" href="/">
+                        <span itemprop="title">Home</span>
+                    </a>
+                    <span>&#10140;</span>
+                    <span class="">Collection</span>
+                </span>
+            </nav>
+        <h1>Laptops(@ViewBag.LaptopCount)</h1>
+        </header>
+        <div class="sidebar" id="filters" role="search">
+            <h2 style="margin-top=5px">Filters</h2>
+            <form id="filters-form" class = "form-control" method="get" novalidate="true">
+                <div class="filter-group" id="price">
+                    <h3>Price</h3>
+                    <div>
+                        <p>
+                        <input type="checkbox" name="price_btw_all" id="price_btw_all" value="all" class="all-scope" data-count="0" checked="checked">
+                <       label for="price_btw_all">All</label>
+                        </p>
+                <p>
+                    <input type="checkbox" name="search[price_btw][]" id="price_btw_300__499" value="300__499" class="scope" data-count="4">
+                    <label for="price_btw_300__499">
+                        300 - 499 $
+                        <span class="filter-count">
+                            <!--ENTER LAPTOP COUNT FOR GIVE PRICE RANGE-->
+                        </span>
+                    </label>
+                </p>
+                    </div>
+                </div>
+            </form>
+        </div>
