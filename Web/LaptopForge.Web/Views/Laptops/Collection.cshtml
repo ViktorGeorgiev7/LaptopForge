@@ -33,6 +33,54 @@
         max-height: none;
         padding: 0 0 0.6666666667em;
     }
+    
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .article-container {
+        max-width: 220px; /* Reduced width to make it more even */
+        margin: 20px auto;
+        padding: 10px 15px; /* Adjusted padding */
+        border: 1px solid #ccc;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .article-image {
+        width: 100%;
+        max-height: 180px;
+        border-radius: 8px;
+    }
+
+    .image-name {
+        margin-top: 8px;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .checkmarks {
+        margin-top: 10px;
+    }
+
+    .checkmark {
+        display: flex;
+        align-items: center;
+        margin-bottom: 3px;
+    }
+
+    .checkmark-symbol {
+        color: #007bff;
+        font-size: 14px;
+        margin-right: 4px;
+        font-weight: bold;
+    }
+
+    .checkmark-text {
+        font-size: 12px;
+        font-weight: bold;
+    }
 </style>
         <header>
             <nav class="breadcrumb">
@@ -113,4 +161,30 @@
                     <h4>Manufacturer</h4>
                 </div>
             </form>
+        </div>
+        <div id="main">
+        <div class="article-container">
+            @foreach (var laptop in ViewBag.Laptops)
+            {
+            <img class="article-image" src=@laptop.ImageUrl alt="Article Image">
+            <div class="image-name">@laptop.Manufacturer @laptop.ModelName</div>
+
+            <div class="checkmarks">
+                <div class="checkmark">
+                    <span class="checkmark-symbol">&#10003;</span>
+                    <div class="checkmark-text">@laptop.CPU</div>
+                </div>
+
+                <div class="checkmark">
+                    <span class="checkmark-symbol">&#10003;</span>
+                    <div class="checkmark-text">@laptop.GPU</div>
+                </div>
+
+                <div class="checkmark">
+                    <span class="checkmark-symbol">&#10003;</span>
+                    <div class="checkmark-text">@laptop.Ram</div>
+                </div>
+            </div>
+            }
+        </div>
         </div>

@@ -26,7 +26,7 @@ namespace LaptopForge.Web.Controllers
 
         [HttpPost]
         [Authorize]
-		public IActionResult Create(CreateLaptopInputModel model)
+        public IActionResult Create(CreateLaptopInputModel model)
         {
             if (!this.ModelState.IsValid)
             {
@@ -39,6 +39,7 @@ namespace LaptopForge.Web.Controllers
 
         public IActionResult Collection()
         {
+            this.ViewBag.Laptops = this.db.Laptops;
             this.ViewBag.LaptopCount = this.db.Laptops.Count();
             this.ViewBag.LaptopFrom0To500 = this.db.Laptops.Where(x => x.Price < 500).Count();
             this.ViewBag.LaptopFrom500To1000 = this.db.Laptops.Where(x => x.Price >= 500 && x.Price < 1000).Count();
