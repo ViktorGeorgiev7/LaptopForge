@@ -40,6 +40,11 @@ namespace LaptopForge.Web.Controllers
         public IActionResult Collection()
         {
             this.ViewBag.LaptopCount = this.db.Laptops.Count();
+            this.ViewBag.LaptopFrom0To500 = this.db.Laptops.Where(x => x.Price < 500).Count();
+            this.ViewBag.LaptopFrom500To1000 = this.db.Laptops.Where(x => x.Price >= 500 && x.Price < 1000).Count();
+            this.ViewBag.LaptopFrom1000To1500 = this.db.Laptops.Where(x => x.Price >= 1000 && x.Price < 1500).Count();
+            this.ViewBag.LaptopFrom1500To2000 = this.db.Laptops.Where(x => x.Price >= 1500 && x.Price < 2000).Count();
+            this.ViewBag.LaptopAbove2000 = this.db.Laptops.Where(x => x.Price > 2000).Count();
             return this.View();
         }
     }
