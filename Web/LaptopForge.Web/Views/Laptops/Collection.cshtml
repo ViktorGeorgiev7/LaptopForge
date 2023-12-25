@@ -42,10 +42,7 @@
 
     .article-container {
         max-width: 220px; /* Reduced width to make it more even */
-        margin: 20px auto;
-        padding: 10px 15px; /* Adjusted padding */
-        border: 1px solid #ccc;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 5px 5px; /* Adjusted padding */
     }
 
     .article-image {
@@ -80,6 +77,24 @@
     .checkmark-text {
         font-size: 12px;
         font-weight: bold;
+    }
+
+    .centernavbar {
+        display: flex;
+        justify-content: center;
+    }
+
+    .laptop-list {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); /* Create 4 columns with equal width */
+        gap: 20px; /* Adjust the gap between items */
+        list-style: none; /* Remove default list styles */
+        padding: 0; /* Remove default padding */
+    }
+
+    .laptop-item {
+        border: 1px solid #ddd; /* Optional: Add border for better visibility */
+        padding: 10px; /* Optional: Add padding for better spacing */
     }
 </style>
         <header>
@@ -163,28 +178,47 @@
             </form>
         </div>
         <div id="main">
-        <div class="article-container">
+        <ul class="laptop-list">
             @foreach (var laptop in ViewBag.Laptops)
             {
-            <img class="article-image" src=@laptop.ImageUrl alt="Article Image">
-            <div class="image-name">@laptop.Manufacturer @laptop.ModelName</div>
+                <li class="laptop-item">
+        <div class="article-container">
+                    <img class="article-image" src=@laptop.ImageUrl alt="Article Image">
+                    <div class="image-name">@laptop.Manufacturer @laptop.ModelName</div>
 
-            <div class="checkmarks">
-                <div class="checkmark">
-                    <span class="checkmark-symbol">&#10003;</span>
-                    <div class="checkmark-text">@laptop.CPU</div>
-                </div>
+                    <div class="checkmarks">
+                        <div class="checkmark">
+                            <span class="checkmark-symbol">&#10003;</span>
+                            <div class="checkmark-text">@laptop.CPU</div>
+                        </div>
 
-                <div class="checkmark">
-                    <span class="checkmark-symbol">&#10003;</span>
-                    <div class="checkmark-text">@laptop.GPU</div>
-                </div>
+                        <div class="checkmark">
+                            <span class="checkmark-symbol">&#10003;</span>
+                            <div class="checkmark-text">@laptop.GPU</div>
+                        </div>
 
-                <div class="checkmark">
-                    <span class="checkmark-symbol">&#10003;</span>
-                    <div class="checkmark-text">@laptop.Ram</div>
-                </div>
-            </div>
-            }
+                        <div class="checkmark">
+                            <span class="checkmark-symbol">&#10003;</span>
+                            <div class="checkmark-text">@laptop.Ram</div>
+                        </div>
+                    </div>
         </div>
+                </li>
+            }
+        </ul>
+    <nav aria-label="Page navigation example" class="centernavbar">
+        <ul class="pagination">
+            @for (int i = 1; i <= this.ViewBag.TotalPages; i++)
+            {
+                if (i == this.ViewBag.currentPage)
+                {
+                    <li class="page-item"><a class="page-link active" href="/Laptops/Collection?currentPage=@i">@i</a></li>
+                }
+                else
+                {
+                    <li class="page-item"><a class="page-link" href="/Laptops/Collection?currentPage=@i">@i</a></li>
+                }
+            }
+        </ul>
+    </nav>
         </div>
