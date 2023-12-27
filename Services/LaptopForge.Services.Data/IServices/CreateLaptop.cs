@@ -42,5 +42,27 @@
             await this.laptops.AddAsync(laptop);
             await this.laptops.SaveChangesAsync();
         }
+
+        public DisplayLaptopViewModel LaptopToViewModel(int id)
+        {
+            var model = this.laptops.All().Where(x => x.Id == id).FirstOrDefault();
+            var viewModel = new DisplayLaptopViewModel() {
+                Category = model.Category.ToString(),
+                CPU = model.CPU,
+                GPU = model.GPU,
+                Manufacturer = model.Manufacturer.ToString(),
+                ModelName = model.ModelName,
+                OperatingSystem = model.OperatingSystem,
+                OperatingSystemVersion = model.OperatingSystemVersion,
+                Screen = model.Screen,
+                ScreenSize = model.ScreenSize,
+                Ram = model.Ram,
+                Storage = model.Storage,
+                ImageUrl = model.ImageUrl,
+                Weight = model.Weight,
+                Price = model.Price,
+            };
+            return viewModel;
+        }
     }
 }

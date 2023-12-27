@@ -7,5 +7,7 @@
     public interface ICreateLaptop
     {
 		Task GetLaptop(CreateLaptopInputModel model);
+
+        DisplayLaptopViewModel LaptopToViewModel(int id);
     }
 }

@@ -85,29 +85,33 @@
         <ul class="laptop-list">
             @foreach (var laptop in ViewBag.Laptops)
             {
+                <div class="divhover">
                 <li class="laptop-item">
-        <div class="article-container">
-                    <img class="article-image" src=@laptop.ImageUrl alt="Article Image">
-                    <div class="image-name">@laptop.Manufacturer @laptop.ModelName</div>
+                <a style="cursor: pointer;" href="/Laptops/GetLaptop/@laptop.Id">
+                    <div class="article-container">
+                        <img class="article-image" src=@laptop.ImageUrl alt="Article Image">
+                        <div class="image-name">@laptop.Manufacturer @laptop.ModelName</div>
 
-                    <div class="checkmarks">
-                        <div class="checkmark">
-                            <span class="checkmark-symbol">&#10003;</span>
-                            <div class="checkmark-text">@laptop.CPU</div>
-                        </div>
+                        <div class="checkmarks">
+                            <div class="checkmark">
+                                <span class="checkmark-symbol">&#10003;</span>
+                                <div class="checkmark-text">@laptop.CPU</div>
+                            </div>
 
-                        <div class="checkmark">
-                            <span class="checkmark-symbol">&#10003;</span>
-                            <div class="checkmark-text">@laptop.GPU</div>
-                        </div>
+                            <div class="checkmark">
+                                <span class="checkmark-symbol">&#10003;</span>
+                                <div class="checkmark-text">@laptop.GPU</div>
+                            </div>
 
-                        <div class="checkmark">
-                            <span class="checkmark-symbol">&#10003;</span>
-                            <div class="checkmark-text">@laptop.Ram</div>
+                            <div class="checkmark">
+                                <span class="checkmark-symbol">&#10003;</span>
+                                <div class="checkmark-text">@laptop.Ram</div>
+                            </div>
                         </div>
                     </div>
-        </div>
+                </a>
                 </li>
+                </div>
             }
         </ul>
     <nav aria-label="Page navigation example" class="centernavbar">

@@ -56,5 +56,16 @@ namespace LaptopForge.Web.Controllers
             this.ViewBag.currentPage = currentPage;
             return this.View();
         }
+
+        public ViewResult GetLaptop(int id)
+        {
+            var model = this.createLaptop.LaptopToViewModel(id);
+            if (model == null)
+            {
+                //return this.RedirectToAction("Error", "Home");
+            }
+
+            return this.View(model);
+        }
     }
 }
