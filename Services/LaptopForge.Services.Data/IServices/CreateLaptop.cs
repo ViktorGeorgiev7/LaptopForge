@@ -47,6 +47,7 @@
         {
             var model = this.laptops.All().Where(x => x.Id == id).FirstOrDefault();
             var viewModel = new DisplayLaptopViewModel() {
+                Id = model.Id,
                 Category = model.Category.ToString(),
                 CPU = model.CPU,
                 GPU = model.GPU,

@@ -219,3 +219,61 @@ body {
 .laptop-item {
     padding: 10px; /* Optional: Add padding for better spacing */
 }
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.laptop-details-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Equal width columns */
+    gap: 20px;
+    max-width: 1200px; /* Increased max width */
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.laptop-image {
+    text-align: center;
+    max-width: 100%; /* Ensure the image takes up full width of its container */
+}
+
+    .laptop-image img {
+        width: 100%; /* Make the image responsive within its container */
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+.laptop-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+h1 {
+    margin: 0;
+    font-size: 2rem; /* Increased font size by one level */
+    color: #333;
+}
+
+h5 {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 1.5rem; /* Increased font size by one level */
+    color: #555;
+}
+
+strong {
+    color: #007bff;
+}
+
+div {
+    font-size: 1.2rem; /* Increased font size by one level */
+}
+

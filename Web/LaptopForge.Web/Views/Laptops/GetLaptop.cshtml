@@ -1,3 +1,74 @@
-﻿@{
+﻿@model LaptopForge.Web.ViewModels.ViewModels.DisplayLaptopViewModel
+@{
+	ViewData["Title"] = Model.Manufacturer + " " + Model.ModelName;
 }
-<h1>works</h1>
+
+<header>
+    <nav class="breadcrumb">
+        <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+            <a itemprop="url" href="/">
+                <span itemprop="title">Home</span>
+            </a>
+            <span>&#10140;</span>
+            <a itemprop="url" href="/Laptops/Collection">
+                <span class="">Collection</span>
+            </a>
+            <span>&#10140;</span>
+                <span class="">@Model.Manufacturer @Model.ModelName</span>
+        </span>
+    </nav>
+    <div class="laptop-details-container">
+        <div class="laptop-image">
+            <img src="@Model.ImageUrl" alt="Laptop Image" />
+        </div>
+        <div class="laptop-details">
+
+            <h1>@Model.Manufacturer @Model.ModelName</h1>
+
+            <div>
+                <h5>Laptop Specifications</h5>
+
+                <div>
+                    <strong>Processor:</strong> @Model.CPU
+                </div>
+
+                <div>
+                    <strong>GPU:</strong> @Model.GPU
+                </div>
+
+                <div>
+                    <strong>RAM:</strong> @Model.Ram
+                </div>
+
+                <div>
+                    <strong>Storage:</strong> @Model.Storage
+                </div>
+
+                <div>
+                    <strong>Operating System:</strong> @Model.OperatingSystem
+                    @if (Model.OperatingSystemVersion.HasValue)
+                    {
+                        <span>(Version: @Model.OperatingSystemVersion.Value)</span>
+                    }
+                </div>
+
+                <div>
+                    <strong>Screen:</strong> @Model.Screen
+                    <span>(Size: @Model.ScreenSize")</span>
+                </div>
+
+                <div>
+                    <strong>Weight:</strong> @Model.Weight
+                </div>
+
+                <div>
+                    <strong>Price:</strong> $@Model.Price
+                </div>
+
+                <!-- Add more specifications as needed -->
+            </div>
+        </div>
+    </div>
+
+
+</header>

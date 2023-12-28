@@ -8,6 +8,8 @@
 
     public class DisplayLaptopViewModel
     {
+        public int Id { get; set; }
+
         public string Manufacturer { get; set; }
 
         public string ModelName { get; set; }
