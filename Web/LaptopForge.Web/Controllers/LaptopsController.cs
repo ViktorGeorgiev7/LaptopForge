@@ -3,6 +3,7 @@ using LaptopForge.Services.Data.IServices;
 using LaptopForge.Web.ViewModels.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Linq;
 
@@ -11,12 +12,10 @@ namespace LaptopForge.Web.Controllers
     public class LaptopsController : Controller
     {
         private readonly ICreateLaptop createLaptop;
-        private readonly ApplicationDbContext db;
 
-        public LaptopsController(ICreateLaptop createLaptop,ApplicationDbContext db)
+        public LaptopsController(ICreateLaptop createLaptop)
         {
             this.createLaptop = createLaptop;
-            this.db = db;
         }
 
         [Authorize]
@@ -38,23 +37,36 @@ namespace LaptopForge.Web.Controllers
             return this.Redirect("/");
         }
 
-        public IActionResult Collection(int currentPage = 1)
+        public IActionResult Collection(string sortOrder,int currentPage = 1)
         {
-            var laptops = this.db.Laptops.AsEnumerable();
-            //-------------------------------------------------------------------------
+            var laptopsDb = this.createLaptop.GetLaptops();
+            var laptops = from s in laptopsDb.All()
+                           select s;
             this.ViewBag.LaptopCount = laptops.Count();
-            this.ViewBag.LaptopFrom0To500 = laptops.Where(x => x.Price < 500).Count();
-            this.ViewBag.LaptopFrom500To1000 = laptops.Where(x => x.Price >= 500 && x.Price < 1000).Count();
-            this.ViewBag.LaptopFrom1000To1500 = laptops.Where(x => x.Price >= 1000 && x.Price < 1500).Count();
-            this.ViewBag.LaptopFrom1500To2000 = laptops.Where(x => x.Price >= 1500 && x.Price < 2000).Count();
-            this.ViewBag.LaptopAbove2000 = laptops.Where(x => x.Price > 2000).Count();
-            //-------------------------------------------------------------------------
-            this.ViewBag.PageSize = 25;
-            this.ViewBag.TotalPages = Math.Ceiling(laptops.Count() / 25.0);
-            laptops = laptops.Skip((currentPage - 1) * 25).Take(25);
-            this.ViewBag.Laptops = laptops;
-            this.ViewBag.currentPage = currentPage;
-            return this.View();
+            // this.ViewBag.PageSize = 25;
+            // this.ViewBag.TotalPages = Math.Ceiling(laptops.Count() / 25.0);
+            // laptops = laptops.Skip((currentPage - 1) * 25).Take(25);
+            // this.ViewBag.currentPage = currentPage;
+
+            this.ViewData["ManufacturerSortParm"] = string.IsNullOrEmpty(sortOrder) ? "manufacturer_desc" : "";
+            this.ViewData["PriceSortParm"] = sortOrder == "Price" ? "price_desc" : "Price";
+
+            switch (sortOrder)
+            {
+                case "manufacturer_desc":
+                    laptops = laptops.OrderByDescending(l => l.Manufacturer);
+                    break;
+                case "Price":
+                    laptops = laptops.OrderBy(s => s.Price);
+                    break;
+                case "price_desc":
+                    laptops = laptops.OrderByDescending(s => s.Price);
+                    break;
+                default:
+                    laptops = laptops.OrderBy(l => l.Manufacturer);
+                    break;
+            }
+            return this.View(laptops.ToList());
         }
 
         public ViewResult GetLaptop(int id)

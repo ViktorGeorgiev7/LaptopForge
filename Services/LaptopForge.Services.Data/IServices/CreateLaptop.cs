@@ -65,5 +65,9 @@
             };
             return viewModel;
         }
+        public IDeletableEntityRepository<Laptop> GetLaptops()
+        {
+            return this.laptops;
+        }
     }
 }

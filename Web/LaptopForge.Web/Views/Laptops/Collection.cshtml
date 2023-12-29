@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<LaptopForge.Data.Models.Models.Laptop>
+@{
 	ViewData["Title"] = "Laptop Collection";
 }
         <header>
@@ -16,97 +17,36 @@
         <p></p>
         <div class="sidebar" id="filters" role="search">
             <h2>Filters</h2>
-            <form id="filters-form" class = "form-control" method="get" novalidate="true">
-                <div class="filter-group" id="price">
-                    <h4>Price</h4>
-                    <div>
-                        <p>
-                        <input type="checkbox" name="price_btw_all" id="price_btw_all" value="all" class="all-scope" data-count="0" checked="checked">
-                        <label for="price_btw_all">All</label>
-                        </p>
-                <p>
-                    <input type="checkbox" name="search[price_btw][]" id="price_btw_0__500" value="0__500" class="scope">
-                    <label for="price_btw_0__500">
-                        0-500$
-                        <span class="filter-count" style="color:gray">
-                            (@ViewBag.LaptopFrom0To500)
-                            <!--ENTER LAPTOP COUNT FOR GIVE PRICE RANGE-->
-                        </span>
-                    </label>
-                </p>
-                <p>
-                    <input type="checkbox" name="search[price_btw][]" id="price_btw_500__1000" value="500__1000" class="scope">
-                    <label for="price_btw_500__1000">
-                        500-1000$
-                        <span class="filter-count" style="color:gray">
-                            (@ViewBag.LaptopFrom500To1000)
-                            <!--ENTER LAPTOP COUNT FOR GIVE PRICE RANGE-->
-                        </span>
-                    </label>
-                </p>
-                <p>
-                    <input type="checkbox" name="search[price_btw][]" id="price_btw_1000__1500" value="1000__1500" class="scope">
-                    <label for="price_btw_1000__1500">
-                        1000-1500$
-                        <span class="filter-count" style="color:gray">
-                            (@ViewBag.LaptopFrom1000To1500)
-                            <!--ENTER LAPTOP COUNT FOR GIVE PRICE RANGE-->
-                        </span>
-                    </label>
-                </p>
-                <p>
-                    <input type="checkbox" name="search[price_btw][]" id="price_btw_1500__2000" value="1500__2000" class="scope">
-                    <label for="price_btw_1500__2000">
-                        1500-2000$
-                        <span class="filter-count" style="color:gray">
-                            (@ViewBag.LaptopFrom1500To2000)
-                            <!--ENTER LAPTOP COUNT FOR GIVE PRICE RANGE-->
-                        </span>
-                    </label>
-                </p>
-                <p>
-                    <input type="checkbox" name="search[price_btw][]" id="price_btw_2000+" value="2000+" class="scope">
-                    <label for="price_btw_2000+">
-                        2000+$
-                        <span class="filter-count" style="color:gray">
-                            (@ViewBag.LaptopAbove2000)
-                            <!--ENTER LAPTOP COUNT FOR GIVE PRICE RANGE-->
-                        </span>
-                    </label>
-                </p>
-                    </div>
-                </div>
-                <div id="manufacturer" class="filter-group">
-                    <h4>Manufacturer</h4>
-                </div>
-            </form>
+			<a asp-action="Collection" asp-route-sortOrder="@ViewData["ManufacturerSortParm"]">Manufacturer</a>
+            <a asp-action="Collection" asp-route-sortOrder="@ViewData["PriceSortParm"]">Price</a>
         </div>
         <div id="main">
         <ul class="laptop-list">
-            @foreach (var laptop in ViewBag.Laptops)
+            @foreach (var laptop in Model)
             {
                 <div class="divhover">
                 <li class="laptop-item">
                 <a style="cursor: pointer;" href="/Laptops/GetLaptop/@laptop.Id">
                     <div class="article-container">
                         <img class="article-image" src=@laptop.ImageUrl alt="Article Image">
-                        <div class="image-name">@laptop.Manufacturer @laptop.ModelName</div>
+                        <div style="font-size:19px" class="image-name">@laptop.Manufacturer @laptop.ModelName</div>
 
                         <div class="checkmarks">
                             <div class="checkmark">
                                 <span class="checkmark-symbol">&#10003;</span>
-                                <div class="checkmark-text">@laptop.CPU</div>
+                                <div style="font-size:15px" class="checkmark-text">@laptop.CPU</div>
                             </div>
 
                             <div class="checkmark">
                                 <span class="checkmark-symbol">&#10003;</span>
-                                <div class="checkmark-text">@laptop.GPU</div>
+                                <div style="font-size:15px" class="checkmark-text">@laptop.GPU</div>
                             </div>
 
                             <div class="checkmark">
                                 <span class="checkmark-symbol">&#10003;</span>
-                                <div class="checkmark-text">@laptop.Ram</div>
+                                <div style="font-size:15px"  class="checkmark-text">@laptop.Ram</div>
                             </div>
+                            <span style="color:black;font-size:21px">@laptop.Price$</span>
                         </div>
                     </div>
                 </a>
@@ -116,7 +56,7 @@
         </ul>
     <nav aria-label="Page navigation example" class="centernavbar">
         <ul class="pagination">
-            @for (int i = 1; i <= this.ViewBag.TotalPages; i++)
+            @* @for (int i = 1; i <= this.ViewBag.TotalPages; i++)
             {
                 if (i == this.ViewBag.currentPage)
                 {
@@ -126,7 +66,7 @@
                 {
                     <li class="page-item"><a class="page-link" href="/Laptops/Collection?currentPage=@i">@i</a></li>
                 }
-            }
+            } *@
         </ul>
     </nav>
         </div>
