@@ -1,11 +1,15 @@
 ﻿using LaptopForge.Data;
+using LaptopForge.Data.Models.Models;
 using LaptopForge.Services.Data.IServices;
+using LaptopForge.Web.HelpfulModels;
 using LaptopForge.Web.ViewModels.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace LaptopForge.Web.Controllers
 {
@@ -37,19 +41,29 @@ namespace LaptopForge.Web.Controllers
             return this.Redirect("/");
         }
 
-        public IActionResult Collection(string sortOrder,int currentPage = 1)
+        public async Task<IActionResult> Collection(string sortOrder,string searchString,string currentFilter,int? pageNumber,int currentPage = 1)
         {
+            this.ViewData["CurrentSort"] = sortOrder;
+            this.ViewData["ManufacturerSortParm"] = string.IsNullOrEmpty(sortOrder) ? "manufacturer_desc" : "";
+            this.ViewData["PriceSortParm"] = sortOrder == "Price" ? "price_desc" : "Price";
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
             var laptopsDb = this.createLaptop.GetLaptops();
             var laptops = from s in laptopsDb.All()
                            select s;
-            this.ViewBag.LaptopCount = laptops.Count();
-            // this.ViewBag.PageSize = 25;
-            // this.ViewBag.TotalPages = Math.Ceiling(laptops.Count() / 25.0);
-            // laptops = laptops.Skip((currentPage - 1) * 25).Take(25);
-            // this.ViewBag.currentPage = currentPage;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                laptops = laptops.Where(s => s.Manufacturer.Contains(searchString)
+                                       || s.ModelName.Contains(searchString));
+            }
+            this.ViewData["CurrentFilter"] = searchString;
 
-            this.ViewData["ManufacturerSortParm"] = string.IsNullOrEmpty(sortOrder) ? "manufacturer_desc" : "";
-            this.ViewData["PriceSortParm"] = sortOrder == "Price" ? "price_desc" : "Price";
 
             switch (sortOrder)
             {
@@ -66,16 +80,15 @@ namespace LaptopForge.Web.Controllers
                     laptops = laptops.OrderBy(l => l.Manufacturer);
                     break;
             }
-            return this.View(laptops.ToList());
+
+            this.ViewBag.LaptopCount = laptops.Count();
+            int pageSize = 24;
+            return View(await PaginatedList<Laptop>.CreateAsync(laptops.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         public ViewResult GetLaptop(int id)
         {
             var model = this.createLaptop.LaptopToViewModel(id);
-            if (model == null)
-            {
-                //return this.RedirectToAction("Error", "Home");
-            }
 
             return this.View(model);
         }

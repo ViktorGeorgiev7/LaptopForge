@@ -1,4 +1,5 @@
-﻿@model IEnumerable<LaptopForge.Data.Models.Models.Laptop>
+﻿@using LaptopForge.Web.HelpfulModels
+@model PaginatedList<LaptopForge.Data.Models.Models.Laptop>
 @{
 	ViewData["Title"] = "Laptop Collection";
 }
@@ -11,14 +12,27 @@
                     <span>&#10140;</span>
                     <span class="">Collection</span>
                 </span>
+        <form asp-action="Collection" method="get">
+            <div class="form-actions no-color" style="margin-left: 200px;">
+                <p style="margin-bottom: 10px;">
+                    <label for="searchInput" style="font-weight: bold; font-size: 21px; color: #333;">Find by name:</label>
+                    <input type="text" id="searchInput" name="SearchString" placeholder="Search for laptop" value="@ViewData["CurrentFilter"]" style="padding: 8px; font-size: 19px; width: 200px; border: 1px solid #ccc; border-radius: 4px;">
+                    <input type="submit" value="Search" class="btn btn-primary" style="padding: 8px; font-size: 19px; background-color: #007bff; color: #fff; border: 1px solid #007bff; border-radius: 4px;"> |
+                    <a asp-action="Collection" style="text-decoration: none; color: #333; font-size: 19px;">Back to Full List</a>
+                </p>
+            </div>
+        </form>
             </nav>
         <h1>Laptops(@ViewBag.LaptopCount)</h1>  
         </header>
         <p></p>
         <div class="sidebar" id="filters" role="search">
             <h2>Filters</h2>
-			<a asp-action="Collection" asp-route-sortOrder="@ViewData["ManufacturerSortParm"]">Manufacturer</a>
-            <a asp-action="Collection" asp-route-sortOrder="@ViewData["PriceSortParm"]">Price</a>
+			Sort by 
+            <p>
+            <a class="sortingAnchor" asp-action="Collection" asp-route-sortOrder="@ViewData["ManufacturerSortParm"]">Manufacturer</a>
+            <a class="sortingAnchor"  asp-action="Collection" asp-route-sortOrder="@ViewData["PriceSortParm"]">Price</a>
+            </p>
         </div>
         <div id="main">
         <ul class="laptop-list">
@@ -56,17 +70,25 @@
         </ul>
     <nav aria-label="Page navigation example" class="centernavbar">
         <ul class="pagination">
-            @* @for (int i = 1; i <= this.ViewBag.TotalPages; i++)
-            {
-                if (i == this.ViewBag.currentPage)
-                {
-                    <li class="page-item"><a class="page-link active" href="/Laptops/Collection?currentPage=@i">@i</a></li>
-                }
-                else
-                {
-                    <li class="page-item"><a class="page-link" href="/Laptops/Collection?currentPage=@i">@i</a></li>
-                }
-            } *@
+            @{
+                var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+                var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+            }
+
+        <a asp-action="Collection"
+           asp-route-sortOrder="@ViewData["CurrentSort"]"
+           asp-route-pageNumber="@(Model.PageIndex - 1)"
+           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+           class="btn btn-default @prevDisabled">
+            Previous
+        </a>
+        <a asp-action="Collection"
+           asp-route-sortOrder="@ViewData["CurrentSort"]"
+           asp-route-pageNumber="@(Model.PageIndex + 1)"
+           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+           class="btn btn-default @nextDisabled">
+            Next
+        </a>
         </ul>
     </nav>
         </div>
