@@ -4,7 +4,7 @@
 
     using LaptopForge.Data.Common.Models;
 
-    public interface IDeletableEntityRepository<TEntity> : IRepository<TEntity>
+    public interface DeletableEntityRepository<TEntity> : IRepository<TEntity>
         where TEntity : class, IDeletableEntity
     {
         IQueryable<TEntity> AllWithDeleted();

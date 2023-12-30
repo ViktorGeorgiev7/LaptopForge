@@ -7,6 +7,7 @@
 
     using LaptopForge.Data;
     using LaptopForge.Data.Models.Models;
+    using LaptopForge.Services.Data.IServices;
     using LaptopForge.Web.ViewModels;
     using LaptopForge.Web.ViewModels.Administration.Dashboard;
     using Microsoft.AspNetCore.Mvc;
@@ -15,18 +16,20 @@
     public class HomeController : BaseController
     {
         private readonly ApplicationDbContext db;
+        private readonly ICreateLaptop createLaptop;
 
-        public HomeController(ApplicationDbContext db)
+        public HomeController(ApplicationDbContext db, ICreateLaptop createLaptop)
         {
             this.db = db;
+            this.createLaptop = createLaptop;
         }
 
         public IActionResult Index()
         {
-            IndexViewModel model = new IndexViewModel();
-            model.LaptopCount = this.db.Laptops.Count();
-            model.UserCount = this.db.Users.Count();
-            return this.View(model);
+            var laptops = this.createLaptop.GetLaptopsForCarousel();
+            ViewBag.LaptopCount = this.db.Laptops.Count();
+            ViewBag.UserCount = this.db.Users.Count();
+            return this.View(laptops);
         }
 
         public IActionResult Privacy()

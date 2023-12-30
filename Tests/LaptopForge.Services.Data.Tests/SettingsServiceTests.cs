@@ -17,7 +17,7 @@
         [Fact]
         public void GetCountShouldReturnCorrectNumber()
         {
-            var repository = new Mock<IDeletableEntityRepository<Setting>>();
+            var repository = new Mock<DeletableEntityRepository<Setting>>();
             repository.Setup(r => r.AllAsNoTracking()).Returns(new List<Setting>
                                                         {
                                                             new Setting(),

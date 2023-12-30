@@ -3,6 +3,7 @@
 	using AutoMapper;
 	using LaptopForge.Data.Common.Repositories;
 	using LaptopForge.Data.Models.Models;
+    using LaptopForge.Data.Repositories;
     using LaptopForge.Web.ViewModels.ViewModels;
 
     using System;
@@ -13,9 +14,9 @@
 
     public class CreateLaptop : ICreateLaptop
     {
-		private readonly IDeletableEntityRepository<Laptop> laptops;
+		private readonly DeletableEntityRepository<Laptop> laptops;
 
-		public CreateLaptop(IDeletableEntityRepository<Laptop> laptops)
+		public CreateLaptop(DeletableEntityRepository<Laptop> laptops)
         {
 			this.laptops = laptops;
 		}
@@ -65,9 +66,41 @@
             };
             return viewModel;
         }
-        public IDeletableEntityRepository<Laptop> GetLaptops()
+        public DeletableEntityRepository<Laptop> GetLaptops()
         {
             return this.laptops;
+        }
+
+        public List<Laptop> GetLaptopsForCarousel()
+        {//Takes laptops from db and makes a list of them filtered on day of week so every day carousel would look different
+            var laptops = from s in this.laptops.All()
+                          select s;
+            string dayOfWeek = DateTime.UtcNow.DayOfWeek.ToString();
+            switch (dayOfWeek)
+            {
+                case "Monday":
+                    laptops = laptops.Where(x => x.Manufacturer == "Acer").Take(5);
+                    break;
+                case "Tuesday":
+                    laptops = laptops.Where(x => x.Manufacturer == "Apple").Take(5);
+                    break;
+                case "Wednesday":
+                    laptops = laptops.Where(x => x.Manufacturer == "Asus").Take(5);
+                    break;
+                case "Thursday":
+                    laptops = laptops.Where(x => x.Manufacturer == "Dell").Take(5);
+                    break;
+                case "Friday":
+                    laptops = laptops.Where(x => x.Manufacturer == "HP").Take(5);
+                    break;
+                case "Saturday":
+                    laptops = laptops.Where(x => x.Manufacturer == "Lenovo").Take(5);
+                    break;
+                case "Sunday":
+                    laptops = laptops.Where(x => x.Manufacturer == "Apple").Take(5);
+                    break;
+            }
+            return laptops.ToList();
         }
     }
 }

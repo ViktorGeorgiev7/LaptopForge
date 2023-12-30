@@ -3,7 +3,9 @@
     using LaptopForge.Data.Common.Repositories;
     using LaptopForge.Data.Models.Models;
     using LaptopForge.Web.ViewModels.ViewModels;
-	using System.Threading.Tasks;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
 
     public interface ICreateLaptop
     {
@@ -11,6 +13,8 @@
 
         DisplayLaptopViewModel LaptopToViewModel(int id);
 
-        IDeletableEntityRepository<Laptop> GetLaptops();
+        DeletableEntityRepository<Laptop> GetLaptops();
+
+        List<Laptop> GetLaptopsForCarousel();
     }
 }

@@ -7,7 +7,7 @@
     using LaptopForge.Data.Common.Repositories;
     using Microsoft.EntityFrameworkCore;
 
-    public class EfDeletableEntityRepository<TEntity> : EfRepository<TEntity>, IDeletableEntityRepository<TEntity>
+    public class EfDeletableEntityRepository<TEntity> : EfRepository<TEntity>, DeletableEntityRepository<TEntity>
         where TEntity : class, IDeletableEntity
     {
         public EfDeletableEntityRepository(ApplicationDbContext context)
