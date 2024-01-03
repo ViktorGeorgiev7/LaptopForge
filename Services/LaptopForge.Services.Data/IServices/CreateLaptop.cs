@@ -66,6 +66,7 @@
             };
             return viewModel;
         }
+
         public DeletableEntityRepository<Laptop> GetLaptops()
         {
             return this.laptops;
