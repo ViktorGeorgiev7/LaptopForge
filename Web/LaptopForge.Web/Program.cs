@@ -1,4 +1,7 @@
-﻿namespace LaptopForge.Web
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using LaptopForge.Data;
+namespace LaptopForge.Web
 {
     using System.Reflection;
 
@@ -22,6 +25,7 @@
     using Microsoft.Extensions.Hosting;
 
     using AutoMapper;
+    using System;
 
     public class Program
     {
