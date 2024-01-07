@@ -43,24 +43,24 @@
                 <a style="cursor: pointer;" href="/Laptops/GetLaptop/@laptop.Id">
                     <div class="article-container">
                         <img class="article-image" src=@laptop.ImageUrl alt="Article Image">
-                        <div class="image-name text-truncate" style="font-size:19px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">@laptop.Manufacturer @laptop.ModelName</div>
+                        <div class="image-name text-truncate" style="font-size:21px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">@laptop.Manufacturer @laptop.ModelName</div>
 
                         <div class="checkmarks">
                             <div class="checkmark">
                                 <span class="checkmark-symbol">&#10003;</span>
-                                <div style="font-size:15px" class="checkmark-text">@laptop.CPU</div>
+                                <div style="font-size:20px" class="checkmark-text">@laptop.CPU</div>
                             </div>
 
                             <div class="checkmark">
                                 <span class="checkmark-symbol">&#10003;</span>
-                                <div style="font-size:15px" class="checkmark-text">@laptop.GPU</div>
+                                <div style="font-size:20px" class="checkmark-text">@laptop.GPU</div>
                             </div>
 
                             <div class="checkmark">
                                 <span class="checkmark-symbol">&#10003;</span>
-                                <div style="font-size:15px"  class="checkmark-text">@laptop.Ram</div>
+                                <div style="font-size:20px"  class="checkmark-text">@laptop.Ram</div>
                             </div>
-                            <span style="color:black;font-size:21px">@laptop.Price$</span>
+                            <span style="color:black;font-size:23px">@laptop.Price$</span>
                         </div>
                     </div>
                 </a>
@@ -79,7 +79,7 @@
            asp-route-sortOrder="@ViewData["CurrentSort"]"
            asp-route-pageNumber="@(Model.PageIndex - 1)"
            asp-route-currentFilter="@ViewData["CurrentFilter"]"
-           class="btn btn-primary @prevDisabled" style="margin-right: 10px;">
+           class="btn btn-primary @prevDisabled" style="margin-right: 10px;color:white;">
             Previous
         </a>
 
@@ -89,7 +89,7 @@
                asp-route-sortOrder="@ViewData["CurrentSort"]"
                asp-route-pageNumber="@i"
                asp-route-currentFilter="@ViewData["CurrentFilter"]"
-               class="btn btn-primary" style="margin-right: 10px;">
+               class="btn btn-primary" style="margin-right: 10px;color:white;">
                     @i
             </a>
             }
@@ -98,7 +98,7 @@
            asp-route-sortOrder="@ViewData["CurrentSort"]"
            asp-route-pageNumber="@(Model.PageIndex + 1)"
            asp-route-currentFilter="@ViewData["CurrentFilter"]"
-           class="btn btn-primary @nextDisabled" style="margin-right: 10px;">
+           class="btn btn-primary @nextDisabled" style="margin-right: 10px;color:white;">
             Next
         </a>
     </ul>

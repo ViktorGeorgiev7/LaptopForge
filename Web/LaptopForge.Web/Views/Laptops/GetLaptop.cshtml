@@ -2,7 +2,11 @@
 @{
 	ViewData["Title"] = Model.Manufacturer + " " + Model.ModelName;
 }
-
+<style>
+    .laptop-container {
+        min-height: 70vh; /* Adjust the percentage as needed */
+    }
+</style>
 <header>
     <nav class="breadcrumb">
         <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
@@ -17,7 +21,7 @@
                 <span class="">@Model.Manufacturer @Model.ModelName</span>
         </span>
     </nav>
-    <div class="laptop-details-container">
+    <div class="laptop-details-container laptop-container">
         <div class="laptop-image">
             <img src="@Model.ImageUrl" alt="Laptop Image" />
         </div>

@@ -37,12 +37,12 @@
     </style>
 </head>
 <body>
-
+@* 
     <div class="text-center">
         <h1 class="display-4">Welcome to @GlobalConstants.SystemName!</h1>
         <p>There are currently @ViewBag.LaptopCount laptops.</p>
         <p>There are also @ViewBag.UserCount users.</p>
-    </div>
+    </div> *@
     <div class="container">
         <div id="myCarousel" class="carousel" data-ride="carousel" data-interval="false" data-pause="hover">
             <div class="carousel-inner" role="listbox">
@@ -53,17 +53,16 @@
                     <div class="item @showClass">
                         <div class="row">
                             <!-- Text on the Left -->
-                            <div class="col-md-6">
-                                <div style="background-color: #f5f5f5; padding: 25px; border-radius: 12px; box-shadow: 0 0 12px rgba(0, 0, 0, 0.1); border: 3px solid #ddd;">
-                                    <p style="font-family: 'Arial', sans-serif; font-size: 20px; color: #333; line-height: 1.6; margin: 0;">
-                                        Explore Affordable and Dependable Laptops at LaptopForge! Our carefully selected collection ensures you find reliable options without breaking the bank. Discover budget-friendly laptops for students, professionals, and everyday users. Upgrade your computing experience with LaptopForge – your go-to destination for reliable performance at a reasonable price!
+                            <div class="col-md-5" style="margin-left:20px">
+                                    <a class="fw-bolder"style=";font-size:49px;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">Choosing the right laptop made easy with LaptopForge</a>
+                                <p style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size: 24px; color: black; line-height: 1.6; margin: 0;">
+                                        Our carefully selected collection ensures you find reliable options without breaking the bank. Discover budget-friendly laptops for students, professionals, and everyday users.
                                     </p>
-                                </div>
                             </div>
 
                             <!-- Image on the Right -->
-                            <div class="col-md-6">
-                                <div style="position: relative; margin-left: auto; margin-right: 0;">
+                            <div class="col-md-6" style="margin-left:88px">
+                                <div style="position: relative;">
                                     <p class="setborder" style="position: relative;">
                                         <a href="/Laptops/GetLaptop/@Model[i].Id">
                                             <img src="@Model[i].ImageUrl" style="width: 100%; height: auto; border-radius: 12px;" />
@@ -104,29 +103,29 @@
     <div class="row mt-4 justify-content-center">
         @foreach (var laptop in Model)
         {
-            <div class="col-md-2 mb-4">
+            <div class="col-md-2" style="margin-left:30px">
                 <div class="divhover">
                     <a style="cursor: pointer;" href="/Laptops/GetLaptop/@laptop.Id">
-                        <div class="article-container">
+                        <div class="article-container" style="width:500px">
                             <img class="article-image" src=@laptop.ImageUrl alt="Article Image">
-                            <div class="image-name text-truncate" style="font-size:19px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">@laptop.Manufacturer @laptop.ModelName</div>
+                            <div class="image-name text-truncate" style="font-size:21px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">@laptop.Manufacturer @laptop.ModelName</div>
 
                             <div class="checkmarks">
                                 <div class="checkmark">
                                     <span class="checkmark-symbol">&#10003;</span>
-                                    <div style="font-size:15px" class="checkmark-text">@laptop.CPU</div>
+                                    <div style="font-size:20px" class="checkmark-text">@laptop.CPU</div>
                                 </div>
 
                                 <div class="checkmark">
                                     <span class="checkmark-symbol">&#10003;</span>
-                                    <div style="font-size:15px" class="checkmark-text">@laptop.GPU</div>
+                                    <div style="font-size:20px" class="checkmark-text">@laptop.GPU</div>
                                 </div>
 
                                 <div class="checkmark">
                                     <span class="checkmark-symbol">&#10003;</span>
-                                    <div style="font-size:15px" class="checkmark-text">@laptop.Ram</div>
+                                    <div style="font-size:20px" class="checkmark-text">@laptop.Ram</div>
                                 </div>
-                                <span style="color:black;font-size:21px">@laptop.Price$</span>
+                                <span style="color:black;font-size:23px">@laptop.Price$</span>
                             </div>
                         </div>
                     </a>
