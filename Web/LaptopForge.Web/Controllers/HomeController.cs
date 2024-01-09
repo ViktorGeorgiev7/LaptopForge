@@ -15,20 +15,16 @@
 
     public class HomeController : BaseController
     {
-        private readonly ApplicationDbContext db;
         private readonly ICreateLaptop createLaptop;
 
-        public HomeController(ApplicationDbContext db, ICreateLaptop createLaptop)
+        public HomeController(ICreateLaptop createLaptop)
         {
-            this.db = db;
             this.createLaptop = createLaptop;
         }
 
         public IActionResult Index()
         {
             var laptops = this.createLaptop.GetLaptopsForCarousel();
-            ViewBag.LaptopCount = this.db.Laptops.Count();
-            ViewBag.UserCount = this.db.Users.Count();
             return this.View(laptops);
         }
 

@@ -34,6 +34,34 @@
             border-width: 15px;
         }
 
+        .main-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .side-div,
+        .center-image {
+            text-align: center;
+            flex: 1;
+        }
+
+            .sub-div img,
+            .center-image img {
+                max-width: 100%;
+                height: auto;
+            }
+
+        .side-div {
+            max-width: 250px; /* Adjust the width as needed */
+            margin-bottom: 20px;
+        }
+
+        .sub-div {
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
@@ -43,7 +71,7 @@
         <p>There are currently @ViewBag.LaptopCount laptops.</p>
         <p>There are also @ViewBag.UserCount users.</p>
     </div> *@
-    <div class="container">
+    <div class="container" style="margin-top:100px">
         <div id="myCarousel" class="carousel" data-ride="carousel" data-interval="false" data-pause="hover">
             <div class="carousel-inner" role="listbox">
                 @for (var i = 0; i < Model.Count(); i++)
@@ -85,6 +113,46 @@
                 }
             </div>
         </div>
+        <hr />
+        <div class="main-container">
+            <div class="side-div">
+                <div class="sub-div">
+                    <img src="https://www.pngall.com/wp-content/uploads/11/CPU-PNG-Images.png" alt="CPU Image">
+                    <h2>CPU</h2>
+                    <p>It interprets computer instructions and processes data. It is considered the most important component in a computer.</p>
+                </div>
+
+                <div class="sub-div">
+                    <img src="https://www.pngall.com/wp-content/uploads/5/Graphic-Card-PNG-Image.png" alt="GPU Image">
+                    <h2>GPU</h2>
+                    <p>GPU is either integrated into CPU or separately mounted on the motherboard. GPU is specially used to run drawing operations, which reduces the work of CPU.</p>
+                </div>
+            </div>
+
+            <div class="center-image">
+                <img src="https://laptop.bg/system/images/425935/normal/lenovo_thinkpad_e16_gen_1_21JT003EBM.png" style="width:500px" alt="Laptop Image">
+            </div>
+
+            <div class="side-div">
+                <div class="sub-div">
+                    <img src="https://www.pngall.com/wp-content/uploads/5/Gaming-RAM-PNG-Free-Download.png" alt="RAM Image">
+                    <h2>RAM</h2>
+                    <p>It’s the main memory in the computer. It is used to hold data and instructions for fast processing. </p>
+                </div>
+
+                <div class="sub-div">
+                    <img src="https://www.pngall.com/wp-content/uploads/5/SATA-Hard-Disk-Drive.png" alt="HDD Image">
+                    <h2>HDD</h2>
+                    <p>They are non-volatile devices and are used to store data like app installation packages and personal files like photos, documents, etc.</p>
+                </div>
+            </div>
+        </div>
+        <div class="sub-div side-div" style="margin-left:520px;margin-top:-200px">
+            <img src="https://www.pngall.com/wp-content/uploads/2016/04/Motherboard-Free-PNG-Image.png" alt="Motherboard Image">
+            <h2>Motherboard</h2>
+            <p>A motherboard is like the main hub of a computer. It connects all the important parts, like the brain (CPU), memory (RAM), and storage(HDD), so they can work together.</p>
+        </div>
+        <hr />
         <div class="row mt-4">
             <div class="col-md-3">
                 <img src="https://img.freepik.com/free-photo/business-accessories-objects-top-view_1150-7579.jpg?size=626&ext=jpg&ga=GA1.1.80688386.1704303660&semt=ais" alt="Banner 1" style="width: 100%; height: auto; border-radius: 12px;">

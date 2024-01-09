@@ -83,7 +83,7 @@
                     laptops = laptops.Where(x => x.Manufacturer == "Acer").Take(5);
                     break;
                 case "Tuesday":
-                    laptops = laptops.Where(x => x.Manufacturer == "Apple").Take(5);
+                    laptops = laptops.Where(x => x.Manufacturer == "Asus").Take(5);
                     break;
                 case "Wednesday":
                     laptops = laptops.Where(x => x.Manufacturer == "Asus").Take(5);
@@ -98,7 +98,7 @@
                     laptops = laptops.Where(x => x.Manufacturer == "Lenovo").Take(5);
                     break;
                 case "Sunday":
-                    laptops = laptops.Where(x => x.Manufacturer == "Apple").Take(5);
+                    laptops = laptops.Where(x => x.Manufacturer == "Asus").Take(5);
                     break;
             }
             return laptops.ToList();
