@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -54,13 +55,13 @@ namespace LaptopForge.Web.Controllers
             {
                 searchString = currentFilter;
             }
-            var laptopsDb = this.createLaptop.GetLaptops();
-            var laptops = from s in laptopsDb.All()
-                           select s;
+            var laptopsVm = this.createLaptop.GetLaptops();
+            List<DisplayLaptopViewModel> laptops = [.. laptopsVm];
+            
             if (!String.IsNullOrEmpty(searchString))
             {
                 laptops = laptops.Where(s => s.Manufacturer.Contains(searchString)
-                                       || s.ModelName.Contains(searchString));
+                                       || s.ModelName.Contains(searchString)).ToList();
             }
             this.ViewData["CurrentFilter"] = searchString;
 
@@ -68,22 +69,23 @@ namespace LaptopForge.Web.Controllers
             switch (sortOrder)
             {
                 case "manufacturer_desc":
-                    laptops = laptops.OrderByDescending(l => l.Manufacturer);
+                    laptops = laptops.OrderByDescending(l => l.Manufacturer).ToList();
                     break;
                 case "Price":
-                    laptops = laptops.OrderBy(s => s.Price);
+                    laptops = laptops.OrderBy(s => s.Price).ToList();
                     break;
                 case "price_desc":
-                    laptops = laptops.OrderByDescending(s => s.Price);
+                    laptops = laptops.OrderByDescending(s => s.Price).ToList();
                     break;
                 default:
-                    laptops = laptops.OrderBy(l => l.Manufacturer);
+                    laptops = laptops.OrderBy(l => l.Manufacturer).ToList();
                     break;
             }
 
             this.ViewBag.LaptopCount = laptops.Count();
             int pageSize = 24;
-            return View(await PaginatedList<Laptop>.CreateAsync(laptops.AsNoTracking(), pageNumber ?? 1, pageSize));
+            IQueryable<DisplayLaptopViewModel> a = laptops.AsQueryable();
+            return View(PaginatedList<DisplayLaptopViewModel>.CreateAsync(a, pageNumber ?? 1, pageSize));
         }
 
         public ViewResult GetLaptop(int id)

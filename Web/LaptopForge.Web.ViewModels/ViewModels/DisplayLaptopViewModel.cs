@@ -8,6 +8,11 @@
 
     public class DisplayLaptopViewModel
     {
+        public DisplayLaptopViewModel()
+        {
+            this.IsSelected = false;
+        }
+
         public int Id { get; set; }
 
         public string Manufacturer { get; set; }
@@ -37,5 +42,7 @@
         public string Storage { get; set; }
 
         public string Weight { get; set; }
+
+        public bool IsSelected { get; set; }
     }
 }

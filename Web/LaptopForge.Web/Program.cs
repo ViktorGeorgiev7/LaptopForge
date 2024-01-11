@@ -72,6 +72,7 @@ namespace LaptopForge.Web
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ISettingsService, SettingsService>();
             services.AddTransient<ICreateLaptop, CreateLaptop>();
+            services.AddTransient<ICreatePost,CreatePost>();
         }
 
         private static void Configure(WebApplication app)

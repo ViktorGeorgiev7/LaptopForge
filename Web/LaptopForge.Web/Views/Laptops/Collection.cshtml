@@ -1,5 +1,5 @@
 ﻿@using LaptopForge.Web.HelpfulModels
-@model PaginatedList<LaptopForge.Data.Models.Models.Laptop>
+@model PaginatedList<LaptopForge.Web.ViewModels.ViewModels.DisplayLaptopViewModel>
 @{
 	ViewData["Title"] = "Laptop Collection";
 }
@@ -17,7 +17,7 @@
                 <p style="margin-bottom: 10px;">
                     <label for="searchInput" style="font-weight: bold; font-size: 21px; color: #333;">Find by name:</label>
                     <input type="text" id="searchInput" name="SearchString" placeholder="Search for laptop" value="@ViewData["CurrentFilter"]" style="padding: 8px; font-size: 19px; width: 200px; border: 1px solid #ccc; border-radius: 4px;">
-                    <input type="submit" value="Search" class="btn btn-primary" style="padding: 8px; font-size: 19px; background-color: #007bff; color: #fff; border: 1px solid #007bff; border-radius: 4px;"> |
+                    <input type="submit" value="Search" class="btn btn-primary" style="padding: 8px; font-size: 21px; background-color: #007bff; color: #fff; border: 1px solid #007bff; border-radius: 4px;"> |
                     <a asp-action="Collection" style="text-decoration: none; color: #333; font-size: 19px;">Back to Full List</a>
                 </p>
             </div>
@@ -35,12 +35,31 @@
             </p>
         </div>
         <div id="main">
-        <ul class="laptop-list">
-            @foreach (var laptop in Model)
-            {
-                <div class="divhover">
-                <li class="laptop-item">
-                <a style="cursor: pointer;" href="/Laptops/GetLaptop/@laptop.Id">
+    <style>
+        .divhover {
+            position: relative;
+        }
+
+        .form-check {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            margin: 10px;
+            display: none;
+        }
+    </style>
+
+        <form method="post">
+    <ul class="laptop-list">
+        @{
+            int y = 0;
+        }
+        @foreach (var laptop in Model)
+        {
+            y++;
+            <div class="divhover" onmouseover="showCheckbox(@y)" onmouseout="hideCheckbox(@y)">
+            <li class="laptop-item">
+                <a id="anchor" style="cursor: pointer;" href="/Laptops/GetLaptop/@laptop.Id">
                     <div class="article-container">
                         <img class="article-image" src=@laptop.ImageUrl alt="Article Image">
                         <div class="image-name text-truncate" style="font-size:21px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">@laptop.Manufacturer @laptop.ModelName</div>
@@ -58,16 +77,34 @@
 
                             <div class="checkmark">
                                 <span class="checkmark-symbol">&#10003;</span>
-                                <div style="font-size:20px"  class="checkmark-text">@laptop.Ram</div>
+                                <div style="font-size:20px" class="checkmark-text">@laptop.Ram</div>
                             </div>
                             <span style="color:black;font-size:23px">@laptop.Price$</span>
                         </div>
+                        <div class="form-check" id="checkbox-@y">
+                                <input type="checkbox" id="check-@y"class="form-check-input" name="compare">
+                            <label class="form-check-label" for="check-@y">Compare</label>
+                        </div>
                     </div>
                 </a>
-                </li>
-                </div>
-            }
-        </ul>
+            </li>
+    </div>
+        }
+</ul>
+        </form>
+
+<script>
+    function showCheckbox(y) {
+        document.getElementById('checkbox-' + y).style.display = 'block';
+    }
+
+    function hideCheckbox(y) {
+        let checkbox = document.getElementById('check-' + y);
+        if (!checkbox.checked) {
+            document.getElementById('checkbox-' + y).style.display = 'none';
+        }
+    }
+</script>
     <nav aria-label="Page navigation example" class="centernavbar">
     <ul class="pagination">
             @{
@@ -104,4 +141,4 @@
     </ul>
 
     </nav>
-        </div>
+</div>

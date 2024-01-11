@@ -46,7 +46,7 @@
 
         public DisplayLaptopViewModel LaptopToViewModel(int id)
         {
-            var model = this.laptops.All().Where(x => x.Id == id).FirstOrDefault();
+            var model = this.laptops.AllAsNoTracking().Where(x => x.Id == id).FirstOrDefault();
             var viewModel = new DisplayLaptopViewModel() {
                 Id = model.Id,
                 Category = model.Category.ToString(),
@@ -57,7 +57,7 @@
                 OperatingSystem = model.OperatingSystem,
                 OperatingSystemVersion = model.OperatingSystemVersion,
                 Screen = model.Screen,
-                ScreenSize = model.ScreenSize,
+                ScreenSize = 15.6,
                 Ram = model.Ram,
                 Storage = model.Storage,
                 ImageUrl = model.ImageUrl,
@@ -67,9 +67,31 @@
             return viewModel;
         }
 
-        public DeletableEntityRepository<Laptop> GetLaptops()
+        public List<DisplayLaptopViewModel> GetLaptops()
         {
-            return this.laptops;
+            HashSet<DisplayLaptopViewModel> vmc = new HashSet<DisplayLaptopViewModel>();
+            foreach (var model in this.laptops.AllAsNoTracking())
+            {
+                vmc.Add(new DisplayLaptopViewModel()
+                {
+                    Id = model.Id,
+                    Category = model.Category.ToString(),
+                    CPU = model.CPU.ToString(),
+                    GPU = model.GPU.ToString(),
+                    Manufacturer = model.Manufacturer.ToString(),
+                    ModelName = model.ModelName,
+                    OperatingSystem = model.OperatingSystem,
+                    OperatingSystemVersion = model.OperatingSystemVersion,
+                    Screen = model.Screen,
+                    ScreenSize = 15.6,
+                    Ram = model.Ram,
+                    Storage = model.Storage,
+                    ImageUrl = model.ImageUrl,
+                    Weight = model.Weight,
+                    Price = model.Price,
+                });
+            }
+            return vmc.ToList();
         }
 
         public List<Laptop> GetLaptopsForCarousel()

@@ -1,4 +1,4 @@
-﻿namespace LaptopForge.Data.Models.Models
+﻿namespace LaptopForge.Web.ViewModels.ViewModels
 {
     using System;
     using System.Collections.Generic;
@@ -6,18 +6,18 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    using LaptopForge.Data.Common.Models;
+    using LaptopForge.Data.Models.Models;
 
-    public class Post : BaseDeletableModel<int>
+    public class DisplayPostViewModel
     {
-        public Post() {
-        Comments = new HashSet<Comment>();
-        }
         public string Title { get; set; }
+        
         public string Content { get; set; }
+        
         public string? ImageUrl { get; set; }
+
         public string VideoUrl { get; set; }
 
-        public HashSet<Comment> Comments { get; set; }
+        public List<Comment> Comments { get; set; }
     }
 }

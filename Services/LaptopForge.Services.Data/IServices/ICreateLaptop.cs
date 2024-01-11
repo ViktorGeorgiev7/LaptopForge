@@ -13,7 +13,7 @@
 
         DisplayLaptopViewModel LaptopToViewModel(int id);
 
-        DeletableEntityRepository<Laptop> GetLaptops();
+        List<DisplayLaptopViewModel> GetLaptops();
 
         List<Laptop> GetLaptopsForCarousel();
     }

@@ -10,6 +10,7 @@
     using LaptopForge.Services.Data.IServices;
     using LaptopForge.Web.ViewModels;
     using LaptopForge.Web.ViewModels.Administration.Dashboard;
+    using LaptopForge.Web.ViewModels.ViewModels;
     using Microsoft.AspNetCore.Mvc;
     using Newtonsoft.Json;
 
@@ -39,7 +40,19 @@
             //this.db.SaveChanges();
             return this.View();
         }
-        
+
+        //[HttpPost]
+        //public IActionResult Compare(CreateLaptopInputModel model)
+        //{
+        //    if (!this.ModelState.IsValid)
+        //    {
+        //        return this.View(model);
+        //    }
+        //    this.createLaptop.GetLaptop(model);
+        //    // TODO: redirect to the added laptop`s page
+        //    return this.Redirect("/");
+        //}
+
         public IActionResult ContactUs()
         {
             return this.View();
