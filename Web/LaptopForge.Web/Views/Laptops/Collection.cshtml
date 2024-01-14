@@ -49,15 +49,9 @@
         }
     </style>
 
-        <form method="post">
-    <ul class="laptop-list">
-        @{
-            int y = 0;
-        }
+<ul class="laptop-list">
         @foreach (var laptop in Model)
         {
-            y++;
-            <div class="divhover" onmouseover="showCheckbox(@y)" onmouseout="hideCheckbox(@y)">
             <li class="laptop-item">
                 <a id="anchor" style="cursor: pointer;" href="/Laptops/GetLaptop/@laptop.Id">
                     <div class="article-container">
@@ -80,31 +74,12 @@
                                 <div style="font-size:20px" class="checkmark-text">@laptop.Ram</div>
                             </div>
                             <span style="color:black;font-size:23px">@laptop.Price$</span>
-                        </div>
-                        <div class="form-check" id="checkbox-@y">
-                                <input type="checkbox" id="check-@y"class="form-check-input" name="compare">
-                            <label class="form-check-label" for="check-@y">Compare</label>
-                        </div>
+                        </div>                       
                     </div>
                 </a>
             </li>
-    </div>
         }
-</ul>
-        </form>
-
-<script>
-    function showCheckbox(y) {
-        document.getElementById('checkbox-' + y).style.display = 'block';
-    }
-
-    function hideCheckbox(y) {
-        let checkbox = document.getElementById('check-' + y);
-        if (!checkbox.checked) {
-            document.getElementById('checkbox-' + y).style.display = 'none';
-        }
-    }
-</script>
+</ul> 
     <nav aria-label="Page navigation example" class="centernavbar">
     <ul class="pagination">
             @{

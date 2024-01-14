@@ -11,7 +11,7 @@
     public class Post : BaseDeletableModel<int>
     {
         public Post() {
-        Comments = new HashSet<Comment>();
+        this.Comments = new HashSet<Comment>();
         }
         public string Title { get; set; }
         public string Content { get; set; }

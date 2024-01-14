@@ -42,6 +42,13 @@ namespace LaptopForge.Web.Controllers
             return this.Redirect("/");
         }
 
+        //[HttpPost]
+        //public IActionResult Compare(List<DisplayLaptopViewModel> laptopsToCompare)
+        //{
+        //    ;
+        //    return this.View();
+        //}
+
         public async Task<IActionResult> Collection(string sortOrder,string searchString,string currentFilter,int? pageNumber,int currentPage = 1)
         {
             this.ViewData["CurrentSort"] = sortOrder;
@@ -55,14 +62,15 @@ namespace LaptopForge.Web.Controllers
             {
                 searchString = currentFilter;
             }
+
             var laptopsVm = this.createLaptop.GetLaptops();
             List<DisplayLaptopViewModel> laptops = [.. laptopsVm];
-            
-            if (!String.IsNullOrEmpty(searchString))
+            if (!string.IsNullOrEmpty(searchString))
             {
                 laptops = laptops.Where(s => s.Manufacturer.Contains(searchString)
                                        || s.ModelName.Contains(searchString)).ToList();
             }
+
             this.ViewData["CurrentFilter"] = searchString;
 
 
@@ -85,7 +93,7 @@ namespace LaptopForge.Web.Controllers
             this.ViewBag.LaptopCount = laptops.Count();
             int pageSize = 24;
             IQueryable<DisplayLaptopViewModel> a = laptops.AsQueryable();
-            return View(PaginatedList<DisplayLaptopViewModel>.CreateAsync(a, pageNumber ?? 1, pageSize));
+            return this.View(PaginatedList<DisplayLaptopViewModel>.CreateAsync(a, pageNumber ?? 1, pageSize));
         }
 
         public ViewResult GetLaptop(int id)
