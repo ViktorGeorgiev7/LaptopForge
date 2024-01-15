@@ -2,7 +2,7 @@
 {
     using LaptopForge.Data.Common.Repositories;
     using LaptopForge.Data.Models.Models;
-
+    using LaptopForge.Web.ViewModels.ViewModels;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -12,5 +12,7 @@
     public interface ICreatePost
     {
         DeletableEntityRepository<Post> GetPosts();
+
+        DisplayPostViewModel PostToViewModel(int id);
     }
 }

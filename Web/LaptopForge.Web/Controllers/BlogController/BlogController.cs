@@ -18,7 +18,14 @@ namespace LaptopForge.Web.Controllers.BlogController
 
         public IActionResult Blog()
         {
-            return this.View(this.createPost.GetPosts().All().ToList());
+            return this.View(this.createPost.GetPosts().AllAsNoTracking().ToList());
+        }
+
+        public ViewResult Details(int id)
+        {
+            var model = this.createPost.PostToViewModel(id);
+
+            return this.View(model);
         }
     }
 }

@@ -1,15 +1,64 @@
-﻿@model List<LaptopForge.Data.Models.Models.Post>
+﻿@using Microsoft.Security.Application
+@model List<LaptopForge.Data.Models.Models.Post>
 @{
     ViewData["Title"] = "Blog";
 }
-<div>
-    <ul>
-    @foreach (var item in Model)
-    {
-        <li>
-            <h1 style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">@item.Title</h1>
-            <p style="font-size:21px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">@item.Content</p>
-        </li>
+<style>
+    .blog-post {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background-color: #f8f8f8;
+        margin-bottom: 15px;
+        padding: 15px;
+        transition: background-color 0.3s ease;
     }
-    </ul>
+
+        .blog-post:hover {
+            background-color: lightgray;
+        }
+
+        .blog-post h1 {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 10px; /* Add some space between title and content */
+        }
+
+        .blog-post p {
+            font-size: 21px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-1">
+            <!-- Left Sidebar -->
+            <h3>Left Sidebar</h3>
+            <!-- Add your left sidebar content here -->
+        </div>
+        <div class="col-md-10">
+            <!-- Main Content Area -->
+            @foreach (var item in Model)
+            {
+                var cleanedContent = item.Content.Replace("\r\n", "<br>").Replace("\r", "<br>").Replace("\n", "");
+                var sanitizedContent = Sanitizer.GetSafeHtmlFragment(cleanedContent);
+
+                    <a asp-action="Details" asp-controller="Blog" asp-route-id="@item.Id">
+                <div class="blog-post">
+                        <h1>@item.Title</h1>
+@*                         html here is sanitized with AntiXSS library so its completely safe to use Html.Raw
+ *@                        <p>@Html.Raw(sanitizedContent.Substring(0, Math.Min(sanitizedContent.Length, 301))+"...")</p>
+                </div>
+                    </a>
+            }
+        </div>
+        <div class="col-md-1">
+            <!-- Right Sidebar -->
+            <h3>Right Sidebar</h3>
+            <!-- Add your right sidebar content here -->
+        </div>
+    </div>
 </div>

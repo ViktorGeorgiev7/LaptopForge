@@ -1,0 +1,83 @@
+﻿@model LaptopForge.Web.ViewModels.ViewModels.DisplayPostViewModel
+
+@{
+    ViewData["Title"] = "Post Details";
+}
+
+@{
+    ViewData["Title"] = "Post Details";
+}
+
+<style>
+    body {
+        background-color: #f8f9fa; /* Light gray background color */
+    }
+
+    .container {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+    .card {
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+
+        .card img {
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+    .card-title {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+    }
+
+    .card-text {
+        font-size: 1.2rem;
+        color: #495057; /* Text color for better readability */
+    }
+
+    .embed-responsive {
+        border-radius: 15px;
+        overflow: hidden;
+        margin-top: 20px; /* Added margin to separate video from text */
+        position: relative;
+        height: 0;
+        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    }
+
+        .embed-responsive iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px; /* Maintain border radius */
+        }
+</style>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+                @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                {
+                    <img src="@Model.ImageUrl" class="card-img-top img-fluid" alt="Post Image">
+                }
+                <div class="card-body">
+                    <h1 class="card-title">@Model.Title</h1>
+                    <p class="card-text">@Html.Raw(Model.Content.Replace("\r\n", "<br>").Replace("\r", "<br>").Replace("\n", "<br>"))</p>
+                    @if (!string.IsNullOrEmpty(Model.VideoUrl))
+                    {
+                        <div class="embed-responsive embed-responsive-16by9 mt-4">
+                            <iframe class="embed-responsive-item" src="@Model.VideoUrl" allowfullscreen></iframe>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
