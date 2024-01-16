@@ -27,5 +27,20 @@ namespace LaptopForge.Web.Controllers.BlogController
 
             return this.View(model);
         }
+
+        [HttpPost]
+        public IActionResult AddComment(int postId, string commentContent)
+        {
+            if (!string.IsNullOrEmpty(commentContent))
+            {
+                this.createPost.AddComment(commentContent, postId);
+                return this.RedirectToAction("Details", new { id = postId });
+            }
+            else
+            {
+                this.ModelState.AddModelError("commentContent", "Comment cannot be empty.");
+            }
+            return this.RedirectToAction("Details", new { id = postId });
+        }
     }
 }

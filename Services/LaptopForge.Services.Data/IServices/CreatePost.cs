@@ -22,11 +22,13 @@
         {
             return this.posts;
         }
+
         public DisplayPostViewModel PostToViewModel(int id)
         {
             var model = this.posts.AllAsNoTracking().Where(x => x.Id == id).FirstOrDefault();
             var viewModel = new DisplayPostViewModel()
             {
+                Id = model.Id,
                 Title = model.Title,
                 Content = model.Content,
                 ImageUrl = model.ImageUrl,
@@ -36,5 +38,16 @@
             return viewModel;
         }
 
+        public async Task AddComment(string commentContent, int postId)
+        {
+            Comment newComment = new Comment
+            {
+                CContent = commentContent,
+            };
+
+            var post = this.posts.AllAsNoTracking().FirstOrDefault(x => x.Id == postId);
+            post.Comments.Add(newComment);
+            await this.posts.SaveChangesAsync();
+        }
     }
 }

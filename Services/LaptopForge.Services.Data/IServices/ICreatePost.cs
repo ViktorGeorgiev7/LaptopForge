@@ -14,5 +14,7 @@
         DeletableEntityRepository<Post> GetPosts();
 
         DisplayPostViewModel PostToViewModel(int id);
+
+        public Task AddComment(string commentContent, int postId);
     }
 }
