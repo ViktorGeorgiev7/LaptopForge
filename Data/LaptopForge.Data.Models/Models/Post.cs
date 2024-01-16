@@ -13,9 +13,13 @@
         public Post() {
         this.Comments = new HashSet<Comment>();
         }
+        
         public string Title { get; set; }
+        
         public string Content { get; set; }
+        
         public string? ImageUrl { get; set; }
+
         public string VideoUrl { get; set; }
 
         public HashSet<Comment> Comments { get; set; }

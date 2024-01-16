@@ -9,7 +9,7 @@
         background-color: #f8f9fa; /* Light gray background color */
     }
 
-    .container {
+    .containerr {
         padding-top: 40px;
         padding-bottom: 40px;
     }
@@ -93,7 +93,7 @@
     }
 </style>
 
-<div class="container">
+<div class="containerr">
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card">
@@ -130,14 +130,13 @@
                 <h3>Comments</h3>
                 <ul class="comments-list">
                     <!-- Display existing comments here -->
-                    <li class="comment">
-                        <div class="comment-user">John Doe</div>
-                        <div class="comment-content">This is a great post!</div>
-                    </li>
-                    <li class="comment">
-                        <div class="comment-user">Alice Smith</div>
-                        <div class="comment-content">I enjoyed reading this. Well done!</div>
-                    </li>
+                    @foreach (var item in Model.Comments)
+                    {
+                        <li class="comment">
+                            <div class="comment-user">@item.Author</div>
+                            <div class="comment-content">@item.CContent</div>
+                        </li>
+                    }
                     <!-- Add more as needed -->
                 </ul>
             </div>

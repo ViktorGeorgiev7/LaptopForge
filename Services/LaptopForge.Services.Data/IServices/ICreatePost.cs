@@ -15,6 +15,6 @@
 
         DisplayPostViewModel PostToViewModel(int id);
 
-        public Task AddComment(string commentContent, int postId);
+        public Task AddComment(string commentContent, int postId, string username);
     }
 }
