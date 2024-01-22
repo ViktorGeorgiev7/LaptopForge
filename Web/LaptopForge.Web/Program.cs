@@ -26,6 +26,9 @@ namespace LaptopForge.Web
 
     using AutoMapper;
     using System;
+    using Microsoft.AspNetCore.Mvc.Razor;
+    using System.Globalization;
+    using Microsoft.AspNetCore.Localization;
 
     public class Program
     {
@@ -57,11 +60,26 @@ namespace LaptopForge.Web
                 options =>
                 {
                     options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
-                }).AddRazorRuntimeCompilation();
+                }).AddRazorRuntimeCompilation().AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix);
+
             services.AddRazorPages();
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddSingleton(configuration);
+
+            services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+            services.Configure<RequestLocalizationOptions>(options => 
+            {
+                var supportedCultures = new[] { 
+                new CultureInfo("en-US"),
+                new CultureInfo("bg"),
+                };
+
+                options.DefaultRequestCulture = new RequestCulture("en-US");
+                options.SupportedUICultures = supportedCultures;
+                options.SupportedCultures = supportedCultures;
+            });
 
             // Data repositories
             services.AddScoped(typeof(DeletableEntityRepository<>), typeof(EfDeletableEntityRepository<>));
@@ -103,6 +121,7 @@ namespace LaptopForge.Web
             app.UseCookiePolicy();
 
             app.UseRouting();
+            app.UseRequestLocalization();
 
             app.UseAuthentication();
             app.UseAuthorization();

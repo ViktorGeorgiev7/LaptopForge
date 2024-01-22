@@ -1,5 +1,9 @@
 ﻿@using LaptopForge.Common
 @using LaptopForge.Data.Models.Models
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
+
 @model List<Laptop>
 @{
     this.ViewData["Title"] = "Home Page";
@@ -71,7 +75,7 @@
         <p>There are currently @ViewBag.LaptopCount laptops.</p>
         <p>There are also @ViewBag.UserCount users.</p>
     </div> *@
-    <div class="container" style="margin-top:100px">
+    <div class="container" style="margin-top:80px;margin-left:0px">
         <div id="myCarousel" class="carousel" data-ride="carousel" data-interval="false" data-pause="hover">
             <div class="carousel-inner" role="listbox">
                 @for (var i = 0; i < Model.Count(); i++)
@@ -89,7 +93,7 @@
                             </div>
 
                             <!-- Image on the Right -->
-                            <div class="col-md-6" style="margin-left:88px">
+                            <div class="col-md-5" style="margin-left:88px">
                                 <div style="position: relative;">
                                     <p class="setborder" style="position: relative;">
                                         <a href="/Laptops/GetLaptop/@Model[i].Id">
@@ -114,6 +118,20 @@
             </div>
         </div>
         <hr />
+        <div class="row mt-4">
+            <div class="col-md-3">
+                <img src="https://img.freepik.com/free-photo/business-accessories-objects-top-view_1150-7579.jpg?size=626&ext=jpg&ga=GA1.1.80688386.1704303660&semt=ais" alt="Banner 1" style="width: 100%; height: auto; border-radius: 12px;">
+            </div>
+            <div class="col-md-3">
+                <img src="https://img.freepik.com/free-photo/top-view-workspace-with-laptop-notebook_23-2148430831.jpg?size=626&ext=jpg&ga=GA1.1.80688386.1704303660&semt=ais" alt="Banner 2" style="width: 100%; height: auto; border-radius: 12px;">
+            </div>
+            <div class="col-md-3">
+                <img src="https://img.freepik.com/free-photo/top-view-set-gadgets-purple-neon-light-blue_155003-19116.jpg?size=626&ext=jpg&ga=GA1.1.80688386.1704303660&semt=ais" alt="Banner 3" style="width: 100%; height: auto; border-radius: 12px;">
+            </div>
+            <div class="col-md-3">
+                <img src="https://img.freepik.com/free-photo/top-view-set-gadgets-purple-neon-light-pink_155003-19113.jpg?size=626&ext=jpg&ga=GA1.1.80688386.1704303660&semt=ais" alt="Banner 4" style="width: 100%; height: auto; border-radius: 12px;">
+            </div>
+        </div>
         <div class="main-container">
             <div class="side-div">
                 <div class="sub-div">
@@ -153,20 +171,6 @@
             <p>A motherboard is the main hub of a computer. It connects all the important parts, like the CPU, RAM, and HDD, so they can work together.</p>
         </div>
         <hr />
-        <div class="row mt-4">
-            <div class="col-md-3">
-                <img src="https://img.freepik.com/free-photo/business-accessories-objects-top-view_1150-7579.jpg?size=626&ext=jpg&ga=GA1.1.80688386.1704303660&semt=ais" alt="Banner 1" style="width: 100%; height: auto; border-radius: 12px;">
-            </div>
-            <div class="col-md-3">
-                <img src="https://img.freepik.com/free-photo/top-view-workspace-with-laptop-notebook_23-2148430831.jpg?size=626&ext=jpg&ga=GA1.1.80688386.1704303660&semt=ais" alt="Banner 2" style="width: 100%; height: auto; border-radius: 12px;">
-            </div>
-            <div class="col-md-3">
-                <img src="https://img.freepik.com/free-photo/top-view-set-gadgets-purple-neon-light-blue_155003-19116.jpg?size=626&ext=jpg&ga=GA1.1.80688386.1704303660&semt=ais" alt="Banner 3" style="width: 100%; height: auto; border-radius: 12px;">
-            </div>
-            <div class="col-md-3">
-                <img src="https://img.freepik.com/free-photo/top-view-set-gadgets-purple-neon-light-pink_155003-19113.jpg?size=626&ext=jpg&ga=GA1.1.80688386.1704303660&semt=ais" alt="Banner 4" style="width: 100%; height: auto; border-radius: 12px;">
-            </div>
-        </div>
     </div>
     <div class="row mt-4 justify-content-center">
         @foreach (var laptop in Model)
