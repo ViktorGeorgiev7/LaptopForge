@@ -24,6 +24,13 @@
             this.context = context;
         }
 
+        public async Task GetPost(CreatePostViewModel model)
+        {
+            Post post = new Post() { Title=model.Title,Content=model.Content,ImageUrl=model.ImageUrl,VideoUrl=model.VideoUrl};
+            await this.posts.AddAsync(post);
+            await this.posts.SaveChangesAsync();
+        }
+
         public DeletableEntityRepository<Post> GetPosts()
         {
             return this.posts;

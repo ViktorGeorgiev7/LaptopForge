@@ -10,18 +10,22 @@
   "profiles": {
     "IIS Express": {
       "commandName": "IISExpress",
+      "ASPNETCORE_DETAILEDERRORS": "1",
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "enableAnomalyDetection": false
     },
     "LaptopForge.Web": {
       "commandName": "Project",
+      "ASPNETCORE_DETAILEDERRORS": "1",
       "launchBrowser": true,
       "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "enableAnomalyDetection": false
     }
   }
 }

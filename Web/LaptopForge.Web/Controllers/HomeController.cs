@@ -50,19 +50,12 @@
             return this.View();
         }
 
-        //[HttpPost]
-        //public IActionResult Compare(CreateLaptopInputModel model)
-        //{
-        //    if (!this.ModelState.IsValid)
-        //    {
-        //        return this.View(model);
-        //    }
-        //    this.createLaptop.GetLaptop(model);
-        //    // TODO: redirect to the added laptop`s page
-        //    return this.Redirect("/");
-        //}
-
         public IActionResult ContactUs()
+        {
+            return this.View();
+        }
+
+        public IActionResult AboutUs()
         {
             return this.View();
         }
