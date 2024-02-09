@@ -31,6 +31,14 @@
             return this.View(laptops);
         }
 
+        //IMPORTANT:
+        //Uncomment code in privacy if you want to upload records to your database
+        //Steps
+        //1. Add migration with following command: dotnet ef migrations add 'name of migration'
+        //2. Uncomment code in privacy and and set the paths correctly
+        //3. Run app and press on Privacy Policy in footer ONCE
+        //4. Close app and commment or delete the code in privacy except return this.View(); ofcourse
+        //5. Enjoy 101 laptop records and 4 blog records
         public IActionResult Privacy()
         {
             //string jsonPath = @"C:\Users\35988\Desktop\LaptopForge\Web\LaptopForge.Web\wwwroot\Laptops.json";

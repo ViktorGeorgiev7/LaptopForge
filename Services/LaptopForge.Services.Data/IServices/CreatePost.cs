@@ -14,14 +14,10 @@
     public class CreatePost : ICreatePost
     {
         private readonly DeletableEntityRepository<Post> posts;
-        private readonly DeletableEntityRepository<Comment> comments;
-        private readonly ApplicationDbContext context;
 
-        public CreatePost(DeletableEntityRepository<Post> posts, DeletableEntityRepository<Comment> comments,ApplicationDbContext context)
+        public CreatePost(DeletableEntityRepository<Post> posts)
         {
             this.posts = posts;
-            this.comments = comments;
-            this.context = context;
         }
 
         public async Task GetPost(CreatePostViewModel model)

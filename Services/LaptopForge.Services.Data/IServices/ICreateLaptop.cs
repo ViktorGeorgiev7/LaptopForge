@@ -11,10 +11,10 @@
     {
 		Task GetLaptop(CreateLaptopInputModel model);
 
-        DisplayLaptopViewModel LaptopToViewModel(int id);
+		DisplayLaptopViewModel LaptopToViewModel(int id);
 
-        List<DisplayLaptopViewModel> GetLaptops();
+		List<DisplayLaptopViewModel> GetLaptops();
 
-        List<Laptop> GetLaptopsForCarousel();
+		List<Laptop> GetLaptopsForCarousel();
     }
 }

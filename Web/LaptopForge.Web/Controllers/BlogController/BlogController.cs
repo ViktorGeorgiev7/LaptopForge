@@ -60,7 +60,6 @@ namespace LaptopForge.Web.Controllers.BlogController
             {
                 this.createPost.AddComment(commentContent, postId,this.User.Identity.Name);
                 context.SaveChanges();
-                return this.RedirectToAction("Details", new { id = postId });
             }
             else
             {

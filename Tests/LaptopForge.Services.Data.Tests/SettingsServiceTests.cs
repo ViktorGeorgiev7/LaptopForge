@@ -15,21 +15,6 @@
     public class SettingsServiceTests
     {
         [Fact]
-        public void GetCountShouldReturnCorrectNumber()
-        {
-            var repository = new Mock<DeletableEntityRepository<Setting>>();
-            repository.Setup(r => r.AllAsNoTracking()).Returns(new List<Setting>
-                                                        {
-                                                            new Setting(),
-                                                            new Setting(),
-                                                            new Setting(),
-                                                        }.AsQueryable());
-            var service = new SettingsService(repository.Object);
-            Assert.Equal(3, service.GetCount());
-            repository.Verify(x => x.AllAsNoTracking(), Times.Once);
-        }
-
-        [Fact]
         public async Task GetCountShouldReturnCorrectNumberUsingDbContext()
         {
             var options = new DbContextOptionsBuilder<ApplicationDbContext>()
@@ -43,6 +28,21 @@
             using var repository = new EfDeletableEntityRepository<Setting>(dbContext);
             var service = new SettingsService(repository);
             Assert.Equal(3, service.GetCount());
+        }
+
+        [Fact]
+        public void GetCountShouldReturnCorrectNumber()
+        {
+            var repository = new Mock<DeletableEntityRepository<Setting>>();
+            repository.Setup(r => r.AllAsNoTracking()).Returns(new List<Setting>
+                                                        {
+                                                            new Setting(),
+                                                            new Setting(),
+                                                            new Setting(),
+                                                        }.AsQueryable());
+            var service = new SettingsService(repository.Object);
+            Assert.Equal(3, service.GetCount());
+            repository.Verify(x => x.AllAsNoTracking(), Times.Once);
         }
     }
 }
